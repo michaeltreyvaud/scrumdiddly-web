@@ -1,5 +1,5 @@
 import React from 'react';
-import AppTheme from '../../Themes';
+import AppTheme from '../../../Themes';
 
 const Style = {
   container: {

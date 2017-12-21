@@ -1,15 +1,15 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Login from '../Pages/Login';
-import Home from '../Pages/Home';
-import Signup from '../Pages/Signup';
+import Login from '../Routes/Auth/Login';
+import Home from '../Routes';
+import Signup from '../Routes/Auth/Signup';
 
 const AppRouter = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/home" component={Home} />
-    <Route exact path="/login" component={Login} />
-    <Route exact path="/signup" component={Signup} />
+    <Route exact path="/auth/login" component={Login} />
+    <Route exact path="/auth/signup" component={Signup} />
   </Switch>
 );
 
