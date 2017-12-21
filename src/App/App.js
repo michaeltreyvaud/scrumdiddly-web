@@ -1,10 +1,17 @@
 import React from 'react';
+import AppTheme from '../Theme';
 
 const Style = {
   container: {
     display: 'flex',
     flex: 1,
-    backgroundColor: '#FF5A5F',
+    backgroundColor: AppTheme.pink,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: AppTheme.white,
+    fontWeight: 'bold',
+    fontSize: AppTheme.largeFont,
   },
 };
 
