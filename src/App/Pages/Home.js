@@ -1,5 +1,5 @@
 import React from 'react';
-import AppTheme from '../Theme';
+import AppTheme from '../../Themes';
 
 const Style = {
   container: {
@@ -15,10 +15,10 @@ const Style = {
   },
 };
 
-const App = () => (
+const Home = () => (
   <div style={Style.container}>
     Welcome to Scrumdiddly
   </div>
 );
 
-export default App;
+export default Home;
