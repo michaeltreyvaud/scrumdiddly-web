@@ -8,7 +8,6 @@ import AppRouter from './App/Routing';
 import registerServiceWorker from './registerServiceWorker';
 
 const reduxStore = configureStore();
-console.log(reduxStore.getState());
 ReactDOM.render(
   (
     <Provider store={reduxStore}>
