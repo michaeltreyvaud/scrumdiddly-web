@@ -68,7 +68,7 @@ class Login extends Component {
           />
           <input
             type="submit"
-            value="Submit"
+            value="Login"
             style={Styles.loginFormSubmitButton}
           />
         </form>
