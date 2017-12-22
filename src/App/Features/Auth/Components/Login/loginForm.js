@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setEmailAddress } from '../../Store/actions';
+import {
+  setEmailAddress,
+  login,
+} from '../../Store/actions';
 import AppTheme from '../../../../../Themes';
 import './loginForm.css';
 
@@ -9,6 +12,9 @@ const Styles = {
   form: {
     display: 'flex',
     flexDirection: 'column',
+    width: '30%',
+    maxWidth: '450px',
+    minWidth: '300px',
   },
   emailInput: {
     color: AppTheme.white,
@@ -20,7 +26,7 @@ const Styles = {
     fontSize: AppTheme.largeFont,
     outline: 'none',
   },
-  submitButton: {
+  submitButtonValid: {
     height: '40px',
     backgroundColor: AppTheme.white,
     color: AppTheme.blue,
@@ -31,15 +37,26 @@ const Styles = {
     textTransform: 'uppercase',
     outline: 'none',
   },
+  submitButtonInValid: {
+    height: '40px',
+    backgroundColor: AppTheme.blue,
+    color: AppTheme.white,
+    border: 'none',
+    borderRadius: '5px',
+    marginTop: '10px',
+    fontSize: AppTheme.mediumFont,
+    textTransform: 'uppercase',
+    outline: 'none',
+  },
 };
 
 class LoginForm extends Component {
-  submitLoginForm(event) {
-    event.preventDefault();
-    console.log('Login Submitted');
-  }
   onChange(text) {
     this.props.setEmailAddress(text);
+  }
+  submitLoginForm(event) {
+    event.preventDefault();
+    this.props.login();
   }
   render() {
     return (
@@ -58,7 +75,9 @@ class LoginForm extends Component {
         <input
           type="submit"
           value="Login"
-          style={Styles.submitButton}
+          style={this.props.validEmailAddress
+            ? Styles.submitButtonValid
+            : Styles.submitButtonInValid}
         />
       </form>
     );
@@ -67,15 +86,19 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
   emailAddress: PropTypes.string.isRequired,
+  validEmailAddress: PropTypes.bool.isRequired,
   setEmailAddress: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  emailAddress: state.auth.emailAddress,
+  emailAddress: state.auth.loginEmailAddress,
+  validEmailAddress: state.auth.loginEmailAddressValid,
 });
 
 const mapDispatchToProps = dispatch => ({
   setEmailAddress: text => dispatch(setEmailAddress(text)),
+  login: () => dispatch(login()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
