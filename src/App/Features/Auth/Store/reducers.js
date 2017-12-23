@@ -1,12 +1,17 @@
 import {
   SET_EMAIL,
-  LOGIN,
+  ATTEMPT_LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
 } from './constants';
 import validateEmail from '../../../Util/emailCheck';
 
 const initialState = {
   loginEmailAddress: '',
   loginEmailAddressValid: false,
+  loginAttempt: false,
+  loginHasErrors: false,
+  loginErrorMessage: '',
 };
 
 const authReducer = (state = initialState, action) => {
@@ -19,9 +24,20 @@ const authReducer = (state = initialState, action) => {
         loginEmailAddressValid: validateEmail(email),
       };
     }
-    case LOGIN: {
+    case ATTEMPT_LOGIN: {
       return {
         ...state,
+        loginAttempt: true,
+      };
+    }
+    case LOGIN_SUCCESS: {
+      return initialState;
+    }
+    case LOGIN_FAIL: {
+      return {
+        ...initialState,
+        loginHasErrors: true,
+        loginErrorMessage: action.payload.message,
       };
     }
     default:

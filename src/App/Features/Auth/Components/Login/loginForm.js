@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ReactLoading from 'react-loading';
 import {
   setEmailAddress,
   login,
@@ -15,8 +16,10 @@ const Styles = {
     width: '30%',
     maxWidth: '450px',
     minWidth: '300px',
+    alignItems: 'center',
   },
   emailInput: {
+    width: '100%',
     color: AppTheme.white,
     backgroundColor: 'transparent',
     border: 'none',
@@ -27,6 +30,7 @@ const Styles = {
     outline: 'none',
   },
   submitButtonValid: {
+    width: '100%',
     height: '40px',
     backgroundColor: AppTheme.white,
     color: AppTheme.blue,
@@ -38,6 +42,7 @@ const Styles = {
     outline: 'none',
   },
   submitButtonInValid: {
+    width: '100%',
     height: '40px',
     backgroundColor: AppTheme.blue,
     color: AppTheme.white,
@@ -48,6 +53,22 @@ const Styles = {
     textTransform: 'uppercase',
     outline: 'none',
   },
+  loadingContainer: {
+    backgroundColor: AppTheme.white,
+    height: '40px',
+    width: '100%',
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    border: 'none',
+    borderRadius: '5px',
+    marginTop: '10px',
+  },
+  errorContainer: {
+    width: '100%',
+    fontSize: AppTheme.mediumFont,
+    marginTop: '10px',
+  },
 };
 
 class LoginForm extends Component {
@@ -56,7 +77,9 @@ class LoginForm extends Component {
   }
   submitLoginForm(event) {
     event.preventDefault();
-    this.props.login();
+    if (this.props.validEmailAddress) {
+      this.props.login();
+    }
   }
   render() {
     return (
@@ -72,13 +95,28 @@ class LoginForm extends Component {
           value={this.props.emailAddress}
           onChange={event => this.onChange(event.target.value)}
         />
-        <input
+        {this.props.loginAttempt ?
+          <div style={Styles.loadingContainer}>
+            <ReactLoading
+              type="spin"
+              color={AppTheme.blue}
+              delay={0}
+              height="30px"
+              width="30px"
+            />
+          </div>
+        : <input
           type="submit"
           value="Login"
           style={this.props.validEmailAddress
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
-        />
+        />}
+        {this.props.loginHasErrors && this.props.loginErrorMessage &&
+          this.props.loginErrorMessage !== '' &&
+          <div style={Styles.errorContainer}>
+            {this.props.loginErrorMessage}
+          </div>}
       </form>
     );
   }
@@ -89,11 +127,17 @@ LoginForm.propTypes = {
   validEmailAddress: PropTypes.bool.isRequired,
   setEmailAddress: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
+  loginAttempt: PropTypes.bool.isRequired,
+  loginHasErrors: PropTypes.bool.isRequired,
+  loginErrorMessage: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
   emailAddress: state.auth.loginEmailAddress,
   validEmailAddress: state.auth.loginEmailAddressValid,
+  loginAttempt: state.auth.loginAttempt,
+  loginHasErrors: state.auth.loginHasErrors,
+  loginErrorMessage: state.auth.loginErrorMessage,
 });
 
 const mapDispatchToProps = dispatch => ({
