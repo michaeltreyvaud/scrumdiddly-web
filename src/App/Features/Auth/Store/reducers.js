@@ -3,12 +3,15 @@ import {
   ATTEMPT_LOGIN,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  SET_PASSWORD,
 } from './constants';
 import validateEmail from '../../../Util/emailCheck';
 
 const initialState = {
   loginEmailAddress: '',
   loginEmailAddressValid: false,
+  loginPassword: '',
+  loginPasswordValid: false,
   loginAttempt: false,
   loginHasErrors: false,
   loginErrorMessage: '',
@@ -22,6 +25,14 @@ const authReducer = (state = initialState, action) => {
         ...state,
         loginEmailAddress: email,
         loginEmailAddressValid: validateEmail(email),
+      };
+    }
+    case SET_PASSWORD: {
+      const password = action.payload.text;
+      return {
+        ...state,
+        loginPassword: password,
+        loginPasswordValid: password && password.length > 0,
       };
     }
     case ATTEMPT_LOGIN: {

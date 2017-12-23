@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import ReactLoading from 'react-loading';
 import {
   setEmailAddress,
+  setPassword,
   login,
 } from '../../Store/actions';
 import AppTheme from '../../../../../Themes';
@@ -28,6 +29,19 @@ const Styles = {
     borderBottomColor: AppTheme.white,
     fontSize: AppTheme.largeFont,
     outline: 'none',
+    marginTop: '30px',
+  },
+  passwordInput: {
+    width: '100%',
+    color: AppTheme.white,
+    backgroundColor: 'transparent',
+    border: 'none',
+    borderBottomStyle: 'solid',
+    borderBottomWidth: '1px',
+    borderBottomColor: AppTheme.white,
+    fontSize: AppTheme.largeFont,
+    outline: 'none',
+    marginTop: '30px',
   },
   submitButtonValid: {
     width: '100%',
@@ -72,13 +86,16 @@ const Styles = {
 };
 
 class LoginForm extends Component {
-  onChange(text) {
+  emailOnChange(text) {
     this.props.setEmailAddress(text);
+  }
+  passwordOnChange(text) {
+    this.props.setPassword(text);
   }
   submitLoginForm(event) {
     event.preventDefault();
-    if (this.props.validEmailAddress) {
-      this.props.login();
+    if (this.props.validEmailAddress && this.props.validPassword) {
+      this.props.login(this.props.emailAddress, this.props.password);
     }
   }
   render() {
@@ -88,12 +105,18 @@ class LoginForm extends Component {
         style={Styles.form}
       >
         <input
-          className="LoginForm-Email-Input"
           placeholder="Email"
           type="text"
           style={Styles.emailInput}
           value={this.props.emailAddress}
-          onChange={event => this.onChange(event.target.value)}
+          onChange={event => this.emailOnChange(event.target.value)}
+        />
+        <input
+          placeholder="Password"
+          type="text"
+          style={Styles.passwordInput}
+          value={this.props.password}
+          onChange={event => this.passwordOnChange(event.target.value)}
         />
         {this.props.loginAttempt ?
           <div style={Styles.loadingContainer}>
@@ -108,7 +131,7 @@ class LoginForm extends Component {
         : <input
           type="submit"
           value="Login"
-          style={this.props.validEmailAddress
+          style={this.props.validEmailAddress && this.props.validPassword
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
@@ -125,7 +148,10 @@ class LoginForm extends Component {
 LoginForm.propTypes = {
   emailAddress: PropTypes.string.isRequired,
   validEmailAddress: PropTypes.bool.isRequired,
+  password: PropTypes.string.isRequired,
+  validPassword: PropTypes.bool.isRequired,
   setEmailAddress: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   loginAttempt: PropTypes.bool.isRequired,
   loginHasErrors: PropTypes.bool.isRequired,
@@ -135,6 +161,8 @@ LoginForm.propTypes = {
 const mapStateToProps = state => ({
   emailAddress: state.auth.loginEmailAddress,
   validEmailAddress: state.auth.loginEmailAddressValid,
+  password: state.auth.loginPassword,
+  validPassword: state.auth.loginPasswordValid,
   loginAttempt: state.auth.loginAttempt,
   loginHasErrors: state.auth.loginHasErrors,
   loginErrorMessage: state.auth.loginErrorMessage,
@@ -142,7 +170,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setEmailAddress: text => dispatch(setEmailAddress(text)),
-  login: () => dispatch(login()),
+  setPassword: text => dispatch(setPassword(text)),
+  login: (emailAddress, password) => dispatch(login(emailAddress, password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
