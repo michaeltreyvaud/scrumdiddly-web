@@ -82,6 +82,7 @@ const Styles = {
     width: '100%',
     fontSize: AppTheme.mediumFont,
     marginTop: '10px',
+    height: '40px',
   },
 };
 
@@ -135,11 +136,10 @@ class LoginForm extends Component {
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
-        {this.props.loginHasErrors && this.props.loginErrorMessage &&
-          this.props.loginErrorMessage !== '' &&
-          <div style={Styles.errorContainer}>
-            {this.props.loginErrorMessage}
-          </div>}
+        <div style={Styles.errorContainer}>
+          {this.props.loginHasErrors && this.props.loginErrorMessage &&
+            this.props.loginErrorMessage !== '' && this.props.loginErrorMessage}
+        </div>
       </form>
     );
   }

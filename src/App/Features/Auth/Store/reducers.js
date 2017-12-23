@@ -23,6 +23,8 @@ const authReducer = (state = initialState, action) => {
       const email = action.payload.text;
       return {
         ...state,
+        loginHasErrors: false,
+        loginErrorMessage: '',
         loginEmailAddress: email,
         loginEmailAddressValid: validateEmail(email),
       };
@@ -31,6 +33,8 @@ const authReducer = (state = initialState, action) => {
       const password = action.payload.text;
       return {
         ...state,
+        loginHasErrors: false,
+        loginErrorMessage: '',
         loginPassword: password,
         loginPasswordValid: password && password.length > 0,
       };
