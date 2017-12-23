@@ -1,21 +1,26 @@
 import {
-  SET_EMAIL,
+  SET_LOGIN_EMAIL,
   ATTEMPT_LOGIN,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  SET_PASSWORD,
+  SET_LOGIN_PASSWORD,
+  SET_SIGNUP_EMAIL,
+  SET_SIGNUP_PASSWORD,
+  ATTEMPT_SIGNUP,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL,
 } from './constants';
 import handleFetchErrors from '../../../Util/fetchErrorHandler';
 
-export const setEmailAddress = text => ({
-  type: SET_EMAIL,
+export const setLoginEmailAddress = text => ({
+  type: SET_LOGIN_EMAIL,
   payload: {
     text,
   },
 });
 
-export const setPassword = text => ({
-  type: SET_PASSWORD,
+export const setLoginPassword = text => ({
+  type: SET_LOGIN_PASSWORD,
   payload: {
     text,
   },
@@ -55,6 +60,57 @@ export const login = (email, password) => (dispatch) => {
     let message = '';
     message = (!err.code) ? 'Unable to connect, please try again' : err.message;
     return dispatch(loginFail(message));
+  });
+};
+
+export const setSignupEmailAddress = text => ({
+  type: SET_SIGNUP_EMAIL,
+  payload: {
+    text,
+  },
+});
+
+export const setSignupPassword = text => ({
+  type: SET_SIGNUP_PASSWORD,
+  payload: {
+    text,
+  },
+});
+
+export const attemptSignup = () => ({
+  type: ATTEMPT_SIGNUP,
+});
+
+export const signupSuccess = () => ({
+  type: SIGNUP_SUCCESS,
+});
+
+export const signupFail = message => ({
+  type: SIGNUP_FAIL,
+  payload: {
+    message,
+  },
+});
+
+export const signup = (email, password) => (dispatch) => {
+  dispatch(attemptLogin());
+  const body = {
+    email,
+    password,
+  };
+  //  TODO - put variable somewhere
+  return fetch('http://localhost:3001/auth/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  }).then(handleFetchErrors).then(response => response.json()).then((json) => {
+    return dispatch(signupSuccess(json));
+  }).catch((err) => {
+    let message = '';
+    message = (!err.code) ? 'Unable to connect, please try again' : err.message;
+    return dispatch(signupFail(message));
   });
 };
 

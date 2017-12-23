@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginForm from '../../Features/Auth/Components/Login/loginForm';
+import LoginForm from '../../Features/Auth/Components/Login/loginForm.container';
 import AppTheme from '../../../Themes';
 
 const Styles = {

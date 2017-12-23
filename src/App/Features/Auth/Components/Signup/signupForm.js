@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
+import './signupForm.css';
+import Styles from './signupForm.styles';
 import AppTheme from '../../../../../Themes';
-import './loginForm.css';
-import Styles from './loginForm.styles';
 
-class LoginForm extends Component {
+class SignupForm extends Component {
   emailOnChange(text) {
-    this.props.setLoginEmailAddress(text);
+    this.props.setSignupEmailAddress(text);
   }
   passwordOnChange(text) {
-    this.props.setLoginPassword(text);
+    this.props.setSignupPassword(text);
   }
-  submitLoginForm(event) {
+  submitSignupForm(event) {
     event.preventDefault();
     if (this.props.validEmailAddress && this.props.validPassword) {
-      this.props.login(this.props.emailAddress, this.props.password);
+      this.props.signup(this.props.emailAddress, this.props.password);
     }
   }
   render() {
     return (
       <form
-        onSubmit={event => this.submitLoginForm(event)}
+        onSubmit={event => this.submitSignupForm(event)}
         style={Styles.form}
       >
         <input
@@ -38,7 +38,7 @@ class LoginForm extends Component {
           value={this.props.password}
           onChange={event => this.passwordOnChange(event.target.value)}
         />
-        {this.props.loginAttempt ?
+        {this.props.signupAttempt ?
           <div style={Styles.loadingContainer}>
             <ReactLoading
               type="spin"
@@ -50,31 +50,31 @@ class LoginForm extends Component {
           </div>
         : <input
           type="submit"
-          value="Login"
+          value="Signup"
           style={this.props.validEmailAddress && this.props.validPassword
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
         <div style={Styles.errorContainer}>
-          {this.props.loginHasErrors && this.props.loginErrorMessage &&
-            this.props.loginErrorMessage !== '' && this.props.loginErrorMessage}
+          {this.props.signupHasErrors && this.props.signupErrorMessage &&
+            this.props.signupErrorMessage !== '' && this.props.signupErrorMessage}
         </div>
       </form>
     );
   }
 }
 
-LoginForm.propTypes = {
+SignupForm.propTypes = {
   emailAddress: PropTypes.string.isRequired,
   validEmailAddress: PropTypes.bool.isRequired,
   password: PropTypes.string.isRequired,
   validPassword: PropTypes.bool.isRequired,
-  setLoginEmailAddress: PropTypes.func.isRequired,
-  setLoginPassword: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
-  loginAttempt: PropTypes.bool.isRequired,
-  loginHasErrors: PropTypes.bool.isRequired,
-  loginErrorMessage: PropTypes.string.isRequired,
+  setSignupEmailAddress: PropTypes.func.isRequired,
+  setSignupPassword: PropTypes.func.isRequired,
+  signup: PropTypes.func.isRequired,
+  signupAttempt: PropTypes.bool.isRequired,
+  signupHasErrors: PropTypes.bool.isRequired,
+  signupErrorMessage: PropTypes.string.isRequired,
 };
 
-export default LoginForm;
+export default SignupForm;

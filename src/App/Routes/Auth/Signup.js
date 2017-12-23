@@ -1,7 +1,8 @@
 import React from 'react';
 import AppTheme from '../../../Themes';
+import SignupForm from '../../Features/Auth/Components/Signup/signupForm.container';
 
-const Style = {
+const Styles = {
   container: {
     display: 'flex',
     flex: 1,
@@ -12,12 +13,14 @@ const Style = {
     color: AppTheme.white,
     fontWeight: 'bold',
     fontSize: AppTheme.largeFont,
+    flexDirection: 'column',
   },
 };
 
 const Signup = () => (
-  <div style={Style.container}>
+  <div style={Styles.container}>
     Signup
+    <SignupForm />
   </div>
 );
 
