@@ -6,6 +6,9 @@ import Styles from './signupForm.styles';
 import AppTheme from '../../../../../Themes';
 
 class SignupForm extends Component {
+  userNameOnChange(text) {
+    this.props.setSignupUsername(text);
+  }
   emailOnChange(text) {
     this.props.setSignupEmailAddress(text);
   }
@@ -14,8 +17,10 @@ class SignupForm extends Component {
   }
   submitSignupForm(event) {
     event.preventDefault();
-    if (this.props.validEmailAddress && this.props.validPassword) {
-      this.props.signup(this.props.emailAddress, this.props.password);
+    if (this.props.validEmailAddress &&
+      this.props.validPassword &&
+      this.props.signupUsernameValid) {
+      this.props.signup(this.props.signupUsername, this.props.emailAddress, this.props.password);
     }
   }
   render() {
@@ -24,6 +29,13 @@ class SignupForm extends Component {
         onSubmit={event => this.submitSignupForm(event)}
         style={Styles.form}
       >
+        <input
+          placeholder="Username"
+          type="text"
+          style={Styles.passwordInput}
+          value={this.props.signupUsername}
+          onChange={event => this.userNameOnChange(event.target.value)}
+        />
         <input
           placeholder="Email"
           type="text"
@@ -51,7 +63,9 @@ class SignupForm extends Component {
         : <input
           type="submit"
           value="Signup"
-          style={this.props.validEmailAddress && this.props.validPassword
+          style={this.props.validEmailAddress &&
+            this.props.validPassword &&
+            this.props.signupUsernameValid
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
@@ -65,10 +79,13 @@ class SignupForm extends Component {
 }
 
 SignupForm.propTypes = {
+  signupUsername: PropTypes.string.isRequired,
+  signupUsernameValid: PropTypes.bool.isRequired,
   emailAddress: PropTypes.string.isRequired,
   validEmailAddress: PropTypes.bool.isRequired,
   password: PropTypes.string.isRequired,
   validPassword: PropTypes.bool.isRequired,
+  setSignupUsername: PropTypes.func.isRequired,
   setSignupEmailAddress: PropTypes.func.isRequired,
   setSignupPassword: PropTypes.func.isRequired,
   signup: PropTypes.func.isRequired,

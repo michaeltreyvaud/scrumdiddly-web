@@ -9,6 +9,7 @@ import {
   ATTEMPT_SIGNUP,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
+  SET_SIGNUP_USERNAME,
 } from './constants';
 import validateEmail from '../../../Util/emailCheck';
 
@@ -20,6 +21,8 @@ const initialState = {
   loginAttempt: false,
   loginHasErrors: false,
   loginErrorMessage: '',
+  signupUsername: '',
+  signupUsernameValid: false,
   signupEmailAddress: '',
   signupEmailAddressValid: false,
   signupPassword: '',
@@ -65,6 +68,16 @@ const authReducer = (state = initialState, action) => {
         ...initialState,
         loginHasErrors: true,
         loginErrorMessage: action.payload.message,
+      };
+    }
+    case SET_SIGNUP_USERNAME: {
+      const userName = action.payload.text;
+      return {
+        ...state,
+        signupHasErrors: false,
+        signupErrorMessage: '',
+        signupUsername: userName,
+        signupUsernameValid: userName && userName.length > 0,
       };
     }
     case SET_SIGNUP_EMAIL: {

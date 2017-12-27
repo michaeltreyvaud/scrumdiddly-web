@@ -9,6 +9,7 @@ import {
   ATTEMPT_SIGNUP,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
+  SET_SIGNUP_USERNAME,
 } from './constants';
 import handleFetchErrors from '../../../Util/fetchErrorHandler';
 
@@ -54,14 +55,22 @@ export const login = (email, password) => (dispatch) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
-  }).then(handleFetchErrors).then(response => response.json()).then((json) => {
-    return dispatch(loginSuccess(json));
-  }).catch((err) => {
-    let message = '';
-    message = (!err.code) ? 'Unable to connect, please try again' : err.message;
-    return dispatch(loginFail(message));
-  });
+  }).then(handleFetchErrors)
+    .then(response => response.json())
+    .then(json => dispatch(loginSuccess(json)))
+    .catch((err) => {
+      let message = '';
+      message = (!err.code) ? 'Unable to connect, please try again' : err.message;
+      return dispatch(loginFail(message));
+    });
 };
+
+export const setSignupUsername = text => ({
+  type: SET_SIGNUP_USERNAME,
+  payload: {
+    text,
+  },
+});
 
 export const setSignupEmailAddress = text => ({
   type: SET_SIGNUP_EMAIL,
@@ -92,9 +101,10 @@ export const signupFail = message => ({
   },
 });
 
-export const signup = (email, password) => (dispatch) => {
+export const signup = (userName, email, password) => (dispatch) => {
   dispatch(attemptLogin());
   const body = {
+    userName,
     email,
     password,
   };
@@ -105,13 +115,14 @@ export const signup = (email, password) => (dispatch) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
-  }).then(handleFetchErrors).then(response => response.json()).then((json) => {
-    return dispatch(signupSuccess(json));
-  }).catch((err) => {
-    let message = '';
-    message = (!err.code) ? 'Unable to connect, please try again' : err.message;
-    return dispatch(signupFail(message));
-  });
+  }).then(handleFetchErrors)
+    .then(response => response.json())
+    .then(json => dispatch(signupSuccess(json)))
+    .catch((err) => {
+      let message = '';
+      message = (!err.code) ? 'Unable to connect, please try again' : err.message;
+      return dispatch(signupFail(message));
+    });
 };
 
 export default {};
