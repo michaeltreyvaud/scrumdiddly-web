@@ -1,5 +1,5 @@
 import {
-  SET_LOGIN_EMAIL,
+  SET_LOGIN_USERNAME,
   ATTEMPT_LOGIN,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -14,8 +14,8 @@ import {
 import validateEmail from '../../../Util/emailCheck';
 
 const initialState = {
-  loginEmailAddress: '',
-  loginEmailAddressValid: false,
+  loginUsername: '',
+  loginUsernameValid: false,
   loginPassword: '',
   loginPasswordValid: false,
   loginAttempt: false,
@@ -34,14 +34,14 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_LOGIN_EMAIL: {
-      const email = action.payload.text;
+    case SET_LOGIN_USERNAME: {
+      const userName = action.payload.text;
       return {
         ...state,
         loginHasErrors: false,
         loginErrorMessage: '',
-        loginEmailAddress: email,
-        loginEmailAddressValid: validateEmail(email),
+        loginUsername: userName,
+        loginUsernameValid: userName && userName.length > 0,
       };
     }
     case SET_LOGIN_PASSWORD: {

@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import {
-  setLoginEmailAddress,
+  setLoginUsername,
   setLoginPassword,
   login,
 } from '../../Store/actions';
 import LoginForm from './loginForm';
 
 const mapStateToProps = state => ({
-  emailAddress: state.auth.loginEmailAddress,
-  validEmailAddress: state.auth.loginEmailAddressValid,
+  userName: state.auth.loginUsername,
+  validUsername: state.auth.loginUsernameValid,
   password: state.auth.loginPassword,
   validPassword: state.auth.loginPasswordValid,
   loginAttempt: state.auth.loginAttempt,
@@ -17,9 +17,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setLoginEmailAddress: text => dispatch(setLoginEmailAddress(text)),
+  setLoginUsername: text => dispatch(setLoginUsername(text)),
   setLoginPassword: text => dispatch(setLoginPassword(text)),
-  login: (emailAddress, password) => dispatch(login(emailAddress, password)),
+  login: (userName, password) => dispatch(login(userName, password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

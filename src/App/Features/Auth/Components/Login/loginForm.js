@@ -6,16 +6,16 @@ import './loginForm.css';
 import Styles from './loginForm.styles';
 
 class LoginForm extends Component {
-  emailOnChange(text) {
-    this.props.setLoginEmailAddress(text);
+  userNameOnChange(text) {
+    this.props.setLoginUsername(text);
   }
   passwordOnChange(text) {
     this.props.setLoginPassword(text);
   }
   submitLoginForm(event) {
     event.preventDefault();
-    if (this.props.validEmailAddress && this.props.validPassword) {
-      this.props.login(this.props.emailAddress, this.props.password);
+    if (this.props.validUsername && this.props.validPassword) {
+      this.props.login(this.props.userName, this.props.password);
     }
   }
   render() {
@@ -25,15 +25,15 @@ class LoginForm extends Component {
         style={Styles.form}
       >
         <input
-          placeholder="Email"
+          placeholder="Username"
           type="text"
           style={Styles.emailInput}
-          value={this.props.emailAddress}
-          onChange={event => this.emailOnChange(event.target.value)}
+          value={this.props.userName}
+          onChange={event => this.userNameOnChange(event.target.value)}
         />
         <input
           placeholder="Password"
-          type="text"
+          type="password"
           style={Styles.passwordInput}
           value={this.props.password}
           onChange={event => this.passwordOnChange(event.target.value)}
@@ -51,7 +51,7 @@ class LoginForm extends Component {
         : <input
           type="submit"
           value="Login"
-          style={this.props.validEmailAddress && this.props.validPassword
+          style={this.props.validUsername && this.props.validPassword
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
@@ -65,11 +65,11 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-  emailAddress: PropTypes.string.isRequired,
-  validEmailAddress: PropTypes.bool.isRequired,
+  userName: PropTypes.string.isRequired,
+  validUsername: PropTypes.bool.isRequired,
   password: PropTypes.string.isRequired,
   validPassword: PropTypes.bool.isRequired,
-  setLoginEmailAddress: PropTypes.func.isRequired,
+  setLoginUsername: PropTypes.func.isRequired,
   setLoginPassword: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   loginAttempt: PropTypes.bool.isRequired,

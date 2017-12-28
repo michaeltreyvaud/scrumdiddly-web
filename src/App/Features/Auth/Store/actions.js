@@ -1,5 +1,5 @@
 import {
-  SET_LOGIN_EMAIL,
+  SET_LOGIN_USERNAME,
   ATTEMPT_LOGIN,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -14,8 +14,8 @@ import {
 import handleFetchErrors from '../../../Util/fetchErrorHandler';
 import cognitoErrorParser from '../../../Util/cognitoErrorParser';
 
-export const setLoginEmailAddress = text => ({
-  type: SET_LOGIN_EMAIL,
+export const setLoginUsername = text => ({
+  type: SET_LOGIN_USERNAME,
   payload: {
     text,
   },
@@ -43,10 +43,10 @@ export const loginFail = message => ({
   },
 });
 
-export const login = (email, password) => (dispatch) => {
+export const login = (userName, password) => (dispatch) => {
   dispatch(attemptLogin());
   const body = {
-    email,
+    userName,
     password,
   };
   //  TODO - put variable somewhere
