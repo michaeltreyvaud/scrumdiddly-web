@@ -12,6 +12,7 @@ import {
   SET_SIGNUP_USERNAME,
 } from './constants';
 import handleFetchErrors from '../../../Util/fetchErrorHandler';
+import cognitoErrorParser from '../../../Util/cognitoErrorParser';
 
 export const setLoginEmailAddress = text => ({
   type: SET_LOGIN_EMAIL,
@@ -115,7 +116,8 @@ export const signup = (userName, email, password) => (dispatch) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
-  }).then(handleFetchErrors)
+  }).then(cognitoErrorParser)
+    .then(handleFetchErrors)
     .then(response => response.json())
     .then(json => dispatch(signupSuccess(json)))
     .catch((err) => {
