@@ -10,6 +10,11 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   SET_SIGNUP_USERNAME,
+  SET_CONFIRM_USERNAME,
+  SET_CONFIRM_CODE,
+  ATTEMPT_CONFIRM,
+  CONFIRM_SUCCESS,
+  CONFIRM_FAIL,
 } from './constants';
 import validateEmail from '../../../Util/emailCheck';
 
@@ -30,6 +35,13 @@ const initialState = {
   signupAttempt: false,
   signupHasErrors: false,
   signupErrorMessage: '',
+  confirmUserName: '',
+  confirmUserNameValid: false,
+  confirmationCode: '',
+  confirmationCodeValid: false,
+  confirmAttempt: false,
+  confirmHasErrors: false,
+  confirmErrorMessage: '',
 };
 
 const authReducer = (state = initialState, action) => {
@@ -41,7 +53,7 @@ const authReducer = (state = initialState, action) => {
         loginHasErrors: false,
         loginErrorMessage: '',
         loginUsername: userName,
-        loginUsernameValid: userName && userName.length > 0,
+        loginUsernameValid: (userName && userName.length > 0) || false,
       };
     }
     case SET_LOGIN_PASSWORD: {
@@ -51,7 +63,7 @@ const authReducer = (state = initialState, action) => {
         loginHasErrors: false,
         loginErrorMessage: '',
         loginPassword: password,
-        loginPasswordValid: password && password.length > 0,
+        loginPasswordValid: (password && password.length > 0) || false,
       };
     }
     case ATTEMPT_LOGIN: {
@@ -77,7 +89,7 @@ const authReducer = (state = initialState, action) => {
         signupHasErrors: false,
         signupErrorMessage: '',
         signupUsername: userName,
-        signupUsernameValid: userName && userName.length > 0,
+        signupUsernameValid: (userName && userName.length > 0) || false,
       };
     }
     case SET_SIGNUP_EMAIL: {
@@ -97,7 +109,7 @@ const authReducer = (state = initialState, action) => {
         signupHasErrors: false,
         signupErrorMessage: '',
         signupPassword: password,
-        signupPasswordValid: password && password.length > 0,
+        signupPasswordValid: (password && password.length > 0) || false,
       };
     }
     case ATTEMPT_SIGNUP: {
@@ -114,6 +126,42 @@ const authReducer = (state = initialState, action) => {
         ...initialState,
         signupHasErrors: true,
         signupErrorMessage: action.payload.message,
+      };
+    }
+    case SET_CONFIRM_USERNAME: {
+      const userName = action.payload.text;
+      return {
+        ...state,
+        confirmHasErrors: false,
+        confirmErrorMessage: '',
+        confirmUserName: userName,
+        confirmUserNameValid: (userName && userName.length > 0) || false,
+      };
+    }
+    case SET_CONFIRM_CODE: {
+      const confirmationCode = action.payload.text;
+      return {
+        ...state,
+        confirmHasErrors: false,
+        confirmErrorMessage: '',
+        confirmationCode,
+        confirmationCodeValid: (confirmationCode && confirmationCode.length > 0) || false,
+      };
+    }
+    case ATTEMPT_CONFIRM: {
+      return {
+        ...state,
+        confirmAttempt: true,
+      };
+    }
+    case CONFIRM_SUCCESS: {
+      return initialState;
+    }
+    case CONFIRM_FAIL: {
+      return {
+        ...initialState,
+        confirmHasErrors: true,
+        confirmErrorMessage: action.payload.message,
       };
     }
     default:

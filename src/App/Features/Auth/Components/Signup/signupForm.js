@@ -45,7 +45,7 @@ class SignupForm extends Component {
         />
         <input
           placeholder="Password"
-          type="text"
+          type="password"
           style={Styles.passwordInput}
           value={this.props.password}
           onChange={event => this.passwordOnChange(event.target.value)}

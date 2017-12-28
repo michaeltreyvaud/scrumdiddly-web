@@ -11,4 +11,10 @@ export const ATTEMPT_SIGNUP = 'ATTEMPT_SIGNUP';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 
+export const SET_CONFIRM_USERNAME = 'SET_CONFIRM_USERNAME';
+export const SET_CONFIRM_CODE = 'SET_CONFIRM_CODE';
+export const ATTEMPT_CONFIRM = 'ATTEMPT_CONFIRM';
+export const CONFIRM_SUCCESS = 'CONFIRM_SUCCESS';
+export const CONFIRM_FAIL = 'CONFIRM_FAIL';
+
 export default {};
