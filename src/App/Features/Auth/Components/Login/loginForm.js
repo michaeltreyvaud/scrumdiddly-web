@@ -5,32 +5,22 @@ import { withRouter } from 'react-router-dom';
 import AppTheme from '../../../../../Themes';
 import Styles from './loginForm.styles';
 
-const RouteButton = withRouter(({ history, label, path }) => (
-  <button
-    type="button"
-    onClick={() => { history.push(path); }}
-    style={(label === 'Signup') ? Styles.signupButton : Styles.forgotButton}
-  >
-    {label}
-  </button>
-));
-
 class LoginForm extends Component {
   componentWillMount() {
-    this.props.resetLoginState();
+    this.props.resetState();
   }
   componentWillUnmount() {
-    this.props.resetLoginState();
+    this.props.resetState();
   }
   userNameOnChange(text) {
-    this.props.setLoginUsername(text);
+    this.props.setUsername(text);
   }
   passwordOnChange(text) {
-    this.props.setLoginPassword(text);
+    this.props.setPassword(text);
   }
   submitLoginForm(event) {
     event.preventDefault();
-    if (this.props.validUsername && this.props.validPassword) {
+    if (this.props.userNameValid && this.props.passwordValid) {
       this.props.login(this.props.userName, this.props.password);
     }
   }
@@ -54,7 +44,7 @@ class LoginForm extends Component {
           value={this.props.password}
           onChange={event => this.passwordOnChange(event.target.value)}
         />
-        {this.props.loginAttempt ?
+        {this.props.attempt ?
           <div style={Styles.loadingContainer}>
             <ReactLoading
               type="spin"
@@ -67,23 +57,29 @@ class LoginForm extends Component {
         : <input
           type="submit"
           value="Login"
-          style={this.props.validUsername && this.props.validPassword
+          style={this.props.userNameValid && this.props.passwordValid
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
         <div style={Styles.buttonContainer}>
-          <RouteButton
-            label="Signup"
-            path="/auth/signup"
-          />
-          <RouteButton
-            label="Forgot your password?"
-            path="/auth/forgot"
-          />
+          <button
+            type="button"
+            onClick={() => { this.props.history.push('/auth/signup'); }}
+            style={Styles.signupButton}
+          >
+            Signup
+          </button>
+          <button
+            type="button"
+            onClick={() => { this.props.history.push('/auth/forgot'); }}
+            style={Styles.forgotButton}
+          >
+            Forgot your password?
+          </button>
         </div>
         <div style={Styles.errorContainer}>
-          {this.props.loginHasErrors && this.props.loginErrorMessage &&
-            this.props.loginErrorMessage !== '' && this.props.loginErrorMessage}
+          {this.props.hasErrors && this.props.errorMessage &&
+            this.props.errorMessage !== '' && this.props.errorMessage}
         </div>
       </form>
     );
@@ -92,16 +88,19 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
   userName: PropTypes.string.isRequired,
-  validUsername: PropTypes.bool.isRequired,
+  userNameValid: PropTypes.bool.isRequired,
   password: PropTypes.string.isRequired,
-  validPassword: PropTypes.bool.isRequired,
-  setLoginUsername: PropTypes.func.isRequired,
-  setLoginPassword: PropTypes.func.isRequired,
+  passwordValid: PropTypes.bool.isRequired,
+  attempt: PropTypes.bool.isRequired,
+  hasErrors: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  setUsername: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
-  loginAttempt: PropTypes.bool.isRequired,
-  loginHasErrors: PropTypes.bool.isRequired,
-  loginErrorMessage: PropTypes.string.isRequired,
-  resetLoginState: PropTypes.func.isRequired,
+  resetState: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
-export default LoginForm;
+export default withRouter(LoginForm);

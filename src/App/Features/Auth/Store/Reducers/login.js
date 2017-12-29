@@ -8,13 +8,13 @@ import {
 } from '../constants';
 
 export const loginInitialState = {
-  loginUsername: '',
-  loginUsernameValid: false,
-  loginPassword: '',
-  loginPasswordValid: false,
-  loginAttempt: false,
-  loginHasErrors: false,
-  loginErrorMessage: '',
+  userName: '',
+  userNameValid: false,
+  password: '',
+  passwordValid: false,
+  attempt: false,
+  hasErrors: false,
+  errorMessage: '',
 };
 
 const loginReducer = (state = loginInitialState, action) => {
@@ -23,26 +23,26 @@ const loginReducer = (state = loginInitialState, action) => {
       const userName = action.payload.text;
       return {
         ...state,
-        loginHasErrors: false,
-        loginErrorMessage: '',
-        loginUsername: userName,
-        loginUsernameValid: (userName && userName.length > 0) || false,
+        hasErrors: false,
+        errorMessage: '',
+        userName,
+        userNameValid: (userName && userName.length > 0) || false,
       };
     }
     case SET_LOGIN_PASSWORD: {
       const password = action.payload.text;
       return {
         ...state,
-        loginHasErrors: false,
-        loginErrorMessage: '',
-        loginPassword: password,
-        loginPasswordValid: (password && password.length > 0) || false,
+        hasErrors: false,
+        errorMessage: '',
+        password,
+        passwordValid: (password && password.length > 0) || false,
       };
     }
     case ATTEMPT_LOGIN: {
       return {
         ...state,
-        loginAttempt: true,
+        attempt: true,
       };
     }
     case LOGIN_SUCCESS: {
@@ -51,8 +51,8 @@ const loginReducer = (state = loginInitialState, action) => {
     case LOGIN_FAIL: {
       return {
         ...loginInitialState,
-        loginHasErrors: true,
-        loginErrorMessage: action.payload.message,
+        hasErrors: true,
+        errorMessage: action.payload.message,
       };
     }
     case LOGIN_RESET_STATE: {
