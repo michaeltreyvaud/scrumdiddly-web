@@ -20,6 +20,12 @@ const Styles = {
     minWidth: '300px',
     alignItems: 'center',
   },
+  buttonContainer: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    width: '100%',
+  },
   button: {
     display: 'flex',
     flex: 1,
@@ -34,8 +40,12 @@ const Styles = {
     fontWeight: 'bold',
     margin: '10px',
     outline: 'none',
+    cursor: 'pointer',
+    borderWidth: '1px',
+    borderColor: AppTheme.white,
+    borderStyle: 'solid',
   },
-  loginButton: {
+  buttonHover: {
     display: 'flex',
     flex: 1,
     alignItems: 'center',
@@ -52,6 +62,7 @@ const Styles = {
     borderColor: AppTheme.white,
     borderStyle: 'solid',
     outline: 'none',
+    cursor: 'pointer',
   },
 };
 
