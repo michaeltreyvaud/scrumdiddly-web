@@ -147,6 +147,23 @@ const handleCognitoErrors = (res) => {
           displayMessage = 'Account was not found';
           break;
         }
+        //  Login
+        case 'InvalidUserPoolConfigurationException': {
+          displayMessage = 'Unable to connect, please try again';
+          break;
+        }
+        case 'MFAMethodNotFoundException': {
+          displayMessage = 'Unable to connect, please try again';
+          break;
+        }
+        case 'PasswordResetRequiredException': {
+          displayMessage = 'Password reset is required for this account, please reset your password before attempting to login';
+          break;
+        }
+        case 'UserNotConfirmedException': {
+          displayMessage = 'This account is not active, please confirm your account before attempting to login';
+          break;
+        }
         default: {
           displayMessage = 'Unable to connect, please try again';
           break;

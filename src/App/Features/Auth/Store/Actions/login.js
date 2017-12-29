@@ -7,6 +7,7 @@ import {
   SET_LOGIN_PASSWORD,
 } from '../constants';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
+import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
 
 export const setLoginUsername = text => ({
   type: SET_LOGIN_USERNAME,
@@ -50,7 +51,8 @@ export const login = (userName, password) => (dispatch) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
-  }).then(handleFetchErrors)
+  }).then(cognitoErrorParser)
+    .then(handleFetchErrors)
     .then(response => response.json())
     .then(json => dispatch(loginSuccess(json)))
     .catch((err) => {
