@@ -1,12 +1,13 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Styles from './index.styles';
+import './index.css';
 
 const Button = withRouter(({ history, label, path }) => (
   <button
     type="button"
     onClick={() => { history.push(path); }}
-    style={(label === 'Login') ? Styles.loginButton : Styles.button}
+    className={(label === 'Login') ? 'login-button' : 'button'}
   >
     {label}
   </button>
@@ -16,7 +17,7 @@ const Home = () => (
   <div style={Styles.container}>
     <div style={Styles.content}>
       Welcome to Scrumdiddly
-      <div style={Styles.buttonContainer}>
+      <div className="home-button-container" >
         <Button
           label="Login"
           path="/auth/login"

@@ -1,0 +1,86 @@
+.home-button-container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  width: 100%;
+}
+
+.home-button-container .login-button {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background-color: #FF5A5F;
+  color: #FFFFFF;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin: 10px;
+  border-width: 1px;
+  border-color: #FFFFFF;
+  border-style: solid;
+  outline: none;
+  cursor: pointer;
+}
+
+.home-button-container .login-button:hover {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background-color: #FFFFFF;
+  color: #FF5A5F;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin: 10px;
+  outline: none;
+  cursor: pointer;
+  border-width: 1px;
+  border-color: #FFFFFF;
+  border-style: solid;
+}
+
+.home-button-container .button {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background-color: #FFFFFF;
+  color: #FF5A5F;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin: 10px;
+  outline: none;
+  cursor: pointer;
+  border-width: 1px;
+  border-color: #FFFFFF;
+  border-style: solid;
+}
+
+.home-button-container .button:hover {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background-color: #FF5A5F;
+  color: #FFFFFF;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin: 10px;
+  border-width: 1px;
+  border-color: #FFFFFF;
+  border-style: solid;
+  outline: none;
+  cursor: pointer;
+}

@@ -7,13 +7,13 @@ import {
 import LoginForm from './loginForm';
 
 const mapStateToProps = state => ({
-  userName: state.auth.loginUsername,
-  validUsername: state.auth.loginUsernameValid,
-  password: state.auth.loginPassword,
-  validPassword: state.auth.loginPasswordValid,
-  loginAttempt: state.auth.loginAttempt,
-  loginHasErrors: state.auth.loginHasErrors,
-  loginErrorMessage: state.auth.loginErrorMessage,
+  userName: state.auth.login.loginUsername,
+  validUsername: state.auth.login.loginUsernameValid,
+  password: state.auth.login.loginPassword,
+  validPassword: state.auth.login.loginPasswordValid,
+  loginAttempt: state.auth.login.loginAttempt,
+  loginHasErrors: state.auth.login.loginHasErrors,
+  loginErrorMessage: state.auth.login.loginErrorMessage,
 });
 
 const mapDispatchToProps = dispatch => ({

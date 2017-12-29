@@ -20,12 +20,6 @@ const Styles = {
     minWidth: '300px',
     alignItems: 'center',
   },
-  buttonContainer: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-    width: '100%',
-  },
   button: {
     display: 'flex',
     flex: 1,

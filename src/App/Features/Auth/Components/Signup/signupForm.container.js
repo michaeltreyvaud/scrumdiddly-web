@@ -8,15 +8,15 @@ import {
 } from '../../Store/actions';
 
 const mapStateToProps = state => ({
-  emailAddress: state.auth.signupEmailAddress,
-  validEmailAddress: state.auth.signupEmailAddressValid,
-  password: state.auth.signupPassword,
-  validPassword: state.auth.signupPasswordValid,
-  signupAttempt: state.auth.signupAttempt,
-  signupHasErrors: state.auth.signupHasErrors,
-  signupErrorMessage: state.auth.signupErrorMessage,
-  signupUsername: state.auth.signupUsername,
-  signupUsernameValid: state.auth.signupUsernameValid,
+  emailAddress: state.auth.signup.signupEmailAddress,
+  validEmailAddress: state.auth.signup.signupEmailAddressValid,
+  password: state.auth.signup.signupPassword,
+  validPassword: state.auth.signup.signupPasswordValid,
+  signupAttempt: state.auth.signup.signupAttempt,
+  signupHasErrors: state.auth.signup.signupHasErrors,
+  signupErrorMessage: state.auth.signup.signupErrorMessage,
+  signupUsername: state.auth.signup.signupUsername,
+  signupUsernameValid: state.auth.signup.signupUsernameValid,
 });
 
 const mapDispatchToProps = dispatch => ({

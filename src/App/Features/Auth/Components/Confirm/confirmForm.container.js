@@ -7,13 +7,13 @@ import {
 import ConfirmForm from './confirmForm';
 
 const mapStateToProps = state => ({
-  userName: state.auth.confirmUserName,
-  validUsername: state.auth.confirmUserNameValid,
-  confirmationCode: state.auth.confirmationCode,
-  validConfirmationCode: state.auth.confirmationCodeValid,
-  confirmAttempt: state.auth.confirmAttempt,
-  confirmHasErrors: state.auth.confirmHasErrors,
-  confirmErrorMessage: state.auth.confirmErrorMessage,
+  userName: state.auth.confirm.confirmUserName,
+  validUsername: state.auth.confirm.confirmUserNameValid,
+  confirmationCode: state.auth.confirm.confirmationCode,
+  validConfirmationCode: state.auth.confirm.confirmationCodeValid,
+  confirmAttempt: state.auth.confirm.confirmAttempt,
+  confirmHasErrors: state.auth.confirm.confirmHasErrors,
+  confirmErrorMessage: state.auth.confirm.confirmErrorMessage,
 });
 
 const mapDispatchToProps = dispatch => ({
