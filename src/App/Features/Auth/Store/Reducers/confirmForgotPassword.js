@@ -9,16 +9,16 @@ import {
 } from '../constants';
 
 export const confirmForgotPasswordInitialState = {
-  confirmForgotPasswordUserName: '',
-  confirmForgotPasswordUserNameValid: false,
-  confirmForgotPasswordConfirmationCode: '',
-  confirmForgotPasswordConfirmationCodeValid: false,
-  confirmForgotPasswordPassword: '',
-  confirmForgotPasswordPasswordValid: false,
-  confirmForgotPasswordAttempt: false,
-  confirmForgotPasswordHasErrors: false,
-  confirmForgotPasswordErrorMessage: '',
-  confirmForgotPasswordSuccess: false,
+  userName: '',
+  userNameValid: false,
+  code: '',
+  codeValid: false,
+  password: '',
+  passwordValid: false,
+  attempt: false,
+  hasErrors: false,
+  errorMessage: '',
+  success: false,
 };
 
 const confirmForgotPasswordReducer = (state = confirmForgotPasswordInitialState, action) => {
@@ -27,49 +27,49 @@ const confirmForgotPasswordReducer = (state = confirmForgotPasswordInitialState,
       const userName = action.payload.text;
       return {
         ...state,
-        confirmForgotPasswordHasErrors: false,
-        confirmForgotPasswordErrorMessage: '',
-        confirmForgotPasswordUserName: userName,
-        confirmForgotPasswordUserNameValid: (userName && userName.length > 0) || false,
+        hasErrors: false,
+        errorMessage: '',
+        userName,
+        userNameValid: (userName && userName.length > 0) || false,
       };
     }
     case SET_CONFIRM_FORGOT_PASSWORD_CODE: {
       const code = action.payload.text;
       return {
         ...state,
-        confirmForgotPasswordHasErrors: false,
-        confirmForgotPasswordErrorMessage: '',
-        confirmForgotPasswordConfirmationCode: code,
-        confirmForgotPasswordConfirmationCodeValid: (code && code.length > 0) || false,
+        hasErrors: false,
+        errorMessage: '',
+        code,
+        codeValid: (code && code.length > 0) || false,
       };
     }
     case SET_CONFIRM_FORGOT_PASSWORD_PASSWORD: {
       const password = action.payload.text;
       return {
         ...state,
-        confirmForgotPasswordHasErrors: false,
-        confirmForgotPasswordErrorMessage: '',
-        confirmForgotPasswordPassword: password,
-        confirmForgotPasswordPasswordValid: (password && password.length > 0) || false,
+        hasErrors: false,
+        errorMessage: '',
+        password,
+        passwordValid: (password && password.length > 0) || false,
       };
     }
     case ATTEMPT_CONFIRM_FORGOT_PASSWORD: {
       return {
         ...state,
-        confirmForgotPasswordAttempt: true,
+        attempt: true,
       };
     }
     case CONFIRM_FORGOT_PASSWORD_SUCCESS: {
       return {
         ...confirmForgotPasswordInitialState,
-        confirmForgotPasswordSuccess: true,
+        success: true,
       };
     }
     case CONFIRM_FORGOT_PASSWORD_FAIL: {
       return {
         ...confirmForgotPasswordInitialState,
-        confirmForgotPasswordHasErrors: true,
-        confirmForgotPasswordErrorMessage: action.payload.message,
+        hasErrors: true,
+        errorMessage: action.payload.message,
       };
     }
     case CONFIRM_FORGOT_PASSWORD_RESET_STATE: {

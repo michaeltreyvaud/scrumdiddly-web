@@ -10,36 +10,36 @@ import {
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
 import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
 
-export const setConfirmForgotPasswordUserName = text => ({
+export const setUserName = text => ({
   type: SET_CONFIRM_FORGOT_PASSWORD_USERNAME,
   payload: {
     text,
   },
 });
 
-export const setConfirmForgotPasswordCode = text => ({
+export const setCode = text => ({
   type: SET_CONFIRM_FORGOT_PASSWORD_CODE,
   payload: {
     text,
   },
 });
 
-export const setConfirmForgotPasswordPassword = text => ({
+export const setPassword = text => ({
   type: SET_CONFIRM_FORGOT_PASSWORD_PASSWORD,
   payload: {
     text,
   },
 });
 
-export const attemptConfirmForgotPassword = () => ({
+export const attempt = () => ({
   type: ATTEMPT_CONFIRM_FORGOT_PASSWORD,
 });
 
-export const confirmForgotPasswordSuccess = () => ({
+export const success = () => ({
   type: CONFIRM_FORGOT_PASSWORD_SUCCESS,
 });
 
-export const confirmForgotPasswordFail = message => ({
+export const fail = message => ({
   type: CONFIRM_FORGOT_PASSWORD_FAIL,
   payload: {
     message,
@@ -47,7 +47,7 @@ export const confirmForgotPasswordFail = message => ({
 });
 
 export const confirmForgotPassword = (userName, confirmationCode, password) => (dispatch) => {
-  dispatch(attemptConfirmForgotPassword());
+  dispatch(attempt());
   const body = {
     userName,
     confirmationCode,
@@ -63,14 +63,14 @@ export const confirmForgotPassword = (userName, confirmationCode, password) => (
   }).then(cognitoErrorParser)
     .then(handleFetchErrors)
     .then(response => response.json())
-    .then(json => dispatch(confirmForgotPasswordSuccess(json)))
+    .then(json => dispatch(success(json)))
     .catch((err) => {
       let message = '';
       message = (!err.code) ? 'Unable to connect, please try again' : err.message;
-      return dispatch(confirmForgotPasswordFail(message));
+      return dispatch(fail(message));
     });
 };
 
-export const resetConfirmForgotPasswordState = () => ({
+export const resetState = () => ({
   type: CONFIRM_FORGOT_PASSWORD_RESET_STATE,
 });

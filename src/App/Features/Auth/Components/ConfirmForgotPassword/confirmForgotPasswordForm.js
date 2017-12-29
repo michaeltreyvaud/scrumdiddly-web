@@ -7,7 +7,7 @@ import AppTheme from '../../../../../Themes';
 
 class ConfirmForgotPasswordForm extends Component {
   componentWillMount() {
-    this.props.resetConfirmForgotPasswordState();
+    this.props.resetState();
   }
   componentWillReceiveProps(nextProps) {
     if ((nextProps.success !== this.props.success) &&
@@ -16,16 +16,16 @@ class ConfirmForgotPasswordForm extends Component {
     }
   }
   componentWillUnmount() {
-    this.props.resetConfirmForgotPasswordState();
+    this.props.resetState();
   }
   userNameOnChange(text) {
-    this.props.setConfirmForgotPasswordUserName(text);
+    this.props.setUserName(text);
   }
   codeOnChange(text) {
-    this.props.setConfirmForgotPasswordCode(text);
+    this.props.setCode(text);
   }
   passwordOnChange(text) {
-    this.props.setConfirmForgotPasswordPassword(text);
+    this.props.setPassword(text);
   }
   submitSignupForm(event) {
     event.preventDefault();
@@ -117,11 +117,11 @@ ConfirmForgotPasswordForm.propTypes = {
   hasErrors: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
   success: PropTypes.bool.isRequired,
-  setConfirmForgotPasswordUserName: PropTypes.func.isRequired,
-  setConfirmForgotPasswordCode: PropTypes.func.isRequired,
-  setConfirmForgotPasswordPassword: PropTypes.func.isRequired,
+  setUserName: PropTypes.func.isRequired,
+  setCode: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
   confirmForgotPassword: PropTypes.func.isRequired,
-  resetConfirmForgotPasswordState: PropTypes.func.isRequired,
+  resetState: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

@@ -23,15 +23,15 @@ export const setCode = text => ({
   },
 });
 
-export const attemptConfirm = () => ({
+export const attempt = () => ({
   type: ATTEMPT_CONFIRM,
 });
 
-export const confirmSuccess = () => ({
+export const success = () => ({
   type: CONFIRM_SUCCESS,
 });
 
-export const confirmFail = message => ({
+export const fail = message => ({
   type: CONFIRM_FAIL,
   payload: {
     message,
@@ -39,7 +39,7 @@ export const confirmFail = message => ({
 });
 
 export const confirmAccount = (userName, confirmationCode) => (dispatch) => {
-  dispatch(attemptConfirm());
+  dispatch(attempt());
   const body = {
     userName,
     confirmationCode,
@@ -54,11 +54,11 @@ export const confirmAccount = (userName, confirmationCode) => (dispatch) => {
   }).then(cognitoErrorParser)
     .then(handleFetchErrors)
     .then(response => response.json())
-    .then(json => dispatch(confirmSuccess(json)))
+    .then(json => dispatch(success(json)))
     .catch((err) => {
       let message = '';
       message = (!err.code) ? 'Unable to connect, please try again' : err.message;
-      return dispatch(confirmFail(message));
+      return dispatch(fail(message));
     });
 };
 
