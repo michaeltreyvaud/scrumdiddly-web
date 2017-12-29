@@ -3,7 +3,8 @@ import {
   setLoginUsername,
   setLoginPassword,
   login,
-} from '../../Store/actions';
+  resetLoginState,
+} from '../../Store/Actions/login';
 import LoginForm from './loginForm';
 
 const mapStateToProps = state => ({
@@ -20,6 +21,7 @@ const mapDispatchToProps = dispatch => ({
   setLoginUsername: text => dispatch(setLoginUsername(text)),
   setLoginPassword: text => dispatch(setLoginPassword(text)),
   login: (userName, password) => dispatch(login(userName, password)),
+  resetLoginState: () => dispatch(resetLoginState()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

@@ -3,7 +3,8 @@ import {
   setConfirmUsername,
   setConfirmCode,
   confirmAccount,
-} from '../../Store/actions';
+  resetConfirmState,
+} from '../../Store/Actions/confirm';
 import ConfirmForm from './confirmForm';
 
 const mapStateToProps = state => ({
@@ -21,6 +22,7 @@ const mapDispatchToProps = dispatch => ({
   setConfirmCode: code => dispatch(setConfirmCode(code)),
   confirmAccount: (userName, confirmationCode) =>
     dispatch(confirmAccount(userName, confirmationCode)),
+  resetState: () => dispatch(resetConfirmState()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConfirmForm);

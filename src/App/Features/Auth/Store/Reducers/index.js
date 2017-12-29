@@ -4,17 +4,20 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   SET_LOGIN_PASSWORD,
+  LOGIN_RESET_STATE,
   SET_SIGNUP_EMAIL,
   SET_SIGNUP_PASSWORD,
   ATTEMPT_SIGNUP,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   SET_SIGNUP_USERNAME,
+  SIGNUP_RESET_STATE,
   SET_CONFIRM_USERNAME,
   SET_CONFIRM_CODE,
   ATTEMPT_CONFIRM,
   CONFIRM_SUCCESS,
   CONFIRM_FAIL,
+  CONFIRM_RESET_STATE,
 } from '../constants';
 import loginReducer, { loginInitialState } from './login';
 import signupReducer, { signupInitialState } from './signup';
@@ -54,13 +57,19 @@ const authReducer = (state = initialState, action) => {
     }
     case LOGIN_SUCCESS: {
       return {
-        ...initialState,
+        ...state,
         login: loginReducer(state.login, action),
       };
     }
     case LOGIN_FAIL: {
       return {
-        ...initialState,
+        ...state,
+        login: loginReducer(state.login, action),
+      };
+    }
+    case LOGIN_RESET_STATE: {
+      return {
+        ...state,
         login: loginReducer(state.login, action),
       };
     }
@@ -90,13 +99,19 @@ const authReducer = (state = initialState, action) => {
     }
     case SIGNUP_SUCCESS: {
       return {
-        ...initialState,
+        ...state,
         signup: signupReducer(state.signup, action),
       };
     }
     case SIGNUP_FAIL: {
       return {
-        ...initialState,
+        ...state,
+        signup: signupReducer(state.signup, action),
+      };
+    }
+    case SIGNUP_RESET_STATE: {
+      return {
+        ...state,
         signup: signupReducer(state.signup, action),
       };
     }
@@ -119,11 +134,20 @@ const authReducer = (state = initialState, action) => {
       };
     }
     case CONFIRM_SUCCESS: {
-      return initialState;
+      return {
+        ...state,
+        confirm: confirmReducer(state.confirm, action),
+      };
     }
     case CONFIRM_FAIL: {
       return {
-        ...initialState,
+        ...state,
+        confirm: confirmReducer(state.confirm, action),
+      };
+    }
+    case CONFIRM_RESET_STATE: {
+      return {
+        ...state,
         confirm: confirmReducer(state.confirm, action),
       };
     }

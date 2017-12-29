@@ -17,6 +17,12 @@ const RouteButton = withRouter(({ history, label, path }) => (
 ));
 
 class LoginForm extends Component {
+  componentWillMount() {
+    this.props.resetLoginState();
+  }
+  componentWillUnmount() {
+    this.props.resetLoginState();
+  }
   userNameOnChange(text) {
     this.props.setLoginUsername(text);
   }
@@ -96,6 +102,7 @@ LoginForm.propTypes = {
   loginAttempt: PropTypes.bool.isRequired,
   loginHasErrors: PropTypes.bool.isRequired,
   loginErrorMessage: PropTypes.string.isRequired,
+  resetLoginState: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

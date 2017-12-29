@@ -6,6 +6,12 @@ import Styles from './confirmForm.styles';
 import AppTheme from '../../../../../Themes';
 
 class ConfirmForm extends Component {
+  componentWillMount() {
+    this.props.resetState();
+  }
+  componentWillUnmount() {
+    this.props.resetState();
+  }
   userNameOnChange(text) {
     this.props.setConfirmUsername(text);
   }
@@ -75,6 +81,7 @@ ConfirmForm.propTypes = {
   setConfirmUsername: PropTypes.func.isRequired,
   setConfirmCode: PropTypes.func.isRequired,
   confirmAccount: PropTypes.func.isRequired,
+  resetState: PropTypes.func.isRequired,
 };
 
 export default ConfirmForm;

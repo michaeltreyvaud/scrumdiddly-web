@@ -5,7 +5,8 @@ import {
   setSignupPassword,
   signup,
   setSignupUsername,
-} from '../../Store/actions';
+  resetSignupState,
+} from '../../Store/Actions/signup';
 
 const mapStateToProps = state => ({
   emailAddress: state.auth.signup.signupEmailAddress,
@@ -24,6 +25,7 @@ const mapDispatchToProps = dispatch => ({
   setSignupEmailAddress: text => dispatch(setSignupEmailAddress(text)),
   setSignupPassword: text => dispatch(setSignupPassword(text)),
   signup: (userName, emailAddress, password) => dispatch(signup(userName, emailAddress, password)),
+  resetState: () => dispatch(resetSignupState()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);

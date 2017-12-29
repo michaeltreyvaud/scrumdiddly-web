@@ -5,6 +5,7 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   SET_SIGNUP_USERNAME,
+  SIGNUP_RESET_STATE,
 } from '../constants';
 import validateEmail from '../../../../Util/emailCheck';
 
@@ -67,6 +68,9 @@ const signupReducer = (state = signupInitialState, action) => {
         signupHasErrors: true,
         signupErrorMessage: action.payload.message,
       };
+    }
+    case SIGNUP_RESET_STATE: {
+      return signupInitialState;
     }
     default: {
       return state;

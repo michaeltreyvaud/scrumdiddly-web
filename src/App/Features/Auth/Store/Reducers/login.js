@@ -4,6 +4,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   SET_LOGIN_PASSWORD,
+  LOGIN_RESET_STATE,
 } from '../constants';
 
 export const loginInitialState = {
@@ -53,6 +54,9 @@ const loginReducer = (state = loginInitialState, action) => {
         loginHasErrors: true,
         loginErrorMessage: action.payload.message,
       };
+    }
+    case LOGIN_RESET_STATE: {
+      return loginInitialState;
     }
     default: {
       return state;

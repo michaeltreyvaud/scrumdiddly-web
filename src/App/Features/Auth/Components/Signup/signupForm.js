@@ -17,6 +17,12 @@ const RouteButton = withRouter(({ history, label, path }) => (
 ));
 
 class SignupForm extends Component {
+  componentWillMount() {
+    this.props.resetState();
+  }
+  componentWillUnmount() {
+    this.props.resetState();
+  }
   userNameOnChange(text) {
     this.props.setSignupUsername(text);
   }
@@ -113,6 +119,7 @@ SignupForm.propTypes = {
   signupAttempt: PropTypes.bool.isRequired,
   signupHasErrors: PropTypes.bool.isRequired,
   signupErrorMessage: PropTypes.string.isRequired,
+  resetState: PropTypes.func.isRequired,
 };
 
 export default SignupForm;

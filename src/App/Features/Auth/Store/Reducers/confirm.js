@@ -4,6 +4,7 @@ import {
   ATTEMPT_CONFIRM,
   CONFIRM_SUCCESS,
   CONFIRM_FAIL,
+  CONFIRM_RESET_STATE,
 } from '../constants';
 
 export const confirmInitialState = {
@@ -53,6 +54,9 @@ const confirmReducer = (state = confirmInitialState, action) => {
         confirmHasErrors: true,
         confirmErrorMessage: action.payload.message,
       };
+    }
+    case CONFIRM_RESET_STATE: {
+      return confirmInitialState;
     }
     default: {
       return state;
