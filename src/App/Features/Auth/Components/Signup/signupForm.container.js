@@ -18,6 +18,7 @@ const mapStateToProps = state => ({
   signupErrorMessage: state.auth.signup.signupErrorMessage,
   signupUsername: state.auth.signup.signupUsername,
   signupUsernameValid: state.auth.signup.signupUsernameValid,
+  signupSuccess: state.auth.signup.signupSuccess,
 });
 
 const mapDispatchToProps = dispatch => ({

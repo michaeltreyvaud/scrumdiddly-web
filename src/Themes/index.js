@@ -16,7 +16,7 @@ const AppTheme = {
   darkRed: '#B71C1C',
   lightRed: '#D50000',
   lightOrange: '#F9A825',
-  smallFont: '8px',
+  smallFont: '12px',
   mediumFont: '14px',
   largeFont: '24px',
 };

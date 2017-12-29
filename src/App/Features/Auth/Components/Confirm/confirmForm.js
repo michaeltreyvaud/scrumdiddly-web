@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
+import { withRouter } from 'react-router-dom';
 import './confirmForm.css';
 import Styles from './confirmForm.styles';
 import AppTheme from '../../../../../Themes';
@@ -61,6 +62,18 @@ class ConfirmForm extends Component {
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
+        <div style={Styles.buttonContainer}>
+          <button
+            type="button"
+            onClick={() => { this.props.history.push('/auth/resend'); }}
+            style={Styles.resendButton}
+          >
+            Resend code?
+          </button>
+        </div>
+        <div style={Styles.description}>
+          Please enter the verification code that was sent to your supplied email address
+        </div>
         <div style={Styles.errorContainer}>
           {this.props.confirmHasErrors && this.props.confirmErrorMessage &&
             this.props.confirmErrorMessage !== '' && this.props.confirmErrorMessage}
@@ -82,6 +95,9 @@ ConfirmForm.propTypes = {
   setConfirmCode: PropTypes.func.isRequired,
   confirmAccount: PropTypes.func.isRequired,
   resetState: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
-export default ConfirmForm;
+export default withRouter(ConfirmForm);

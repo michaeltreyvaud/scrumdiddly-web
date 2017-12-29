@@ -74,9 +74,30 @@ const Styles = {
   },
   errorContainer: {
     width: '100%',
-    fontSize: AppTheme.mediumFont,
+    fontSize: AppTheme.smallFont,
     marginTop: '10px',
     height: '40px',
+  },
+  description: {
+    width: '100%',
+    marginTop: '10px',
+    fontSize: AppTheme.smallFont,
+  },
+  buttonContainer: {
+    display: 'flex',
+    flex: 1,
+    width: '100%',
+    justifyContent: 'flex-end',
+  },
+  resendButton: {
+    border: 'none',
+    backgroundColor: AppTheme.pink,
+    height: '25px',
+    marginTop: '10px',
+    textAlign: 'left',
+    padding: '0px',
+    color: AppTheme.white,
+    outline: 'none',
   },
 };
 

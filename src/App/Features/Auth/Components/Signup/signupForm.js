@@ -6,19 +6,16 @@ import './signupForm.css';
 import Styles from './signupForm.styles';
 import AppTheme from '../../../../../Themes';
 
-const RouteButton = withRouter(({ history, label, path }) => (
-  <button
-    type="button"
-    onClick={() => { history.push(path); }}
-    style={(label === 'Login') ? Styles.loginButton : Styles.forgotButton}
-  >
-    {label}
-  </button>
-));
-
 class SignupForm extends Component {
   componentWillMount() {
     this.props.resetState();
+  }
+  componentWillReceiveProps(nextProps) {
+    //  Navigate to confirm route on signup success
+    if ((nextProps.signupSuccess !== this.props.signupSuccess) &&
+      (nextProps.signupSuccess === true && this.props.signupSuccess === false)) {
+      this.props.history.push('/auth/confirm');
+    }
   }
   componentWillUnmount() {
     this.props.resetState();
@@ -87,14 +84,20 @@ class SignupForm extends Component {
             : Styles.submitButtonInValid}
         />}
         <div style={Styles.buttonContainer}>
-          <RouteButton
-            label="Login"
-            path="/auth/login"
-          />
-          <RouteButton
-            label="Forgot your password?"
-            path="/auth/forgot"
-          />
+          <button
+            type="button"
+            onClick={() => { this.props.history.push('/auth/login'); }}
+            style={Styles.loginButton}
+          >
+            Login
+          </button>
+          <button
+            type="button"
+            onClick={() => { this.props.history.push('/auth/forgot'); }}
+            style={Styles.forgotButton}
+          >
+            Forgot your password?
+          </button>
         </div>
         <div style={Styles.errorContainer}>
           {this.props.signupHasErrors && this.props.signupErrorMessage &&
@@ -120,6 +123,10 @@ SignupForm.propTypes = {
   signupHasErrors: PropTypes.bool.isRequired,
   signupErrorMessage: PropTypes.string.isRequired,
   resetState: PropTypes.func.isRequired,
+  signupSuccess: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
-export default SignupForm;
+export default withRouter(SignupForm);

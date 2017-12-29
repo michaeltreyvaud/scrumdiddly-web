@@ -19,6 +19,7 @@ export const signupInitialState = {
   signupAttempt: false,
   signupHasErrors: false,
   signupErrorMessage: '',
+  signupSuccess: false,
 };
 
 const signupReducer = (state = signupInitialState, action) => {
@@ -60,7 +61,10 @@ const signupReducer = (state = signupInitialState, action) => {
       };
     }
     case SIGNUP_SUCCESS: {
-      return signupInitialState;
+      return {
+        ...signupInitialState,
+        signupSuccess: true,
+      };
     }
     case SIGNUP_FAIL: {
       return {
