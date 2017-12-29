@@ -33,6 +33,7 @@ const Styles = {
     fontSize: AppTheme.mediumFont,
     textTransform: 'uppercase',
     outline: 'none',
+    cursor: 'pointer',
   },
   submitButtonInValid: {
     width: '100%',
@@ -48,6 +49,7 @@ const Styles = {
     borderWidth: '1px',
     borderColor: AppTheme.white,
     borderStyle: 'solid',
+    cursor: 'pointer',
   },
   loadingContainer: {
     backgroundColor: AppTheme.white,
