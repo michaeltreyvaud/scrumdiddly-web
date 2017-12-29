@@ -4,6 +4,7 @@ import Login from '../Routes/Auth/Login';
 import Home from '../Routes';
 import Signup from '../Routes/Auth/Signup';
 import Confirm from '../Routes/Auth/Confirm';
+import Resend from '../Routes/Auth/Resend';
 import NoMatch from '../Routes/NoMatch';
 
 const AppRouter = () => (
@@ -13,6 +14,7 @@ const AppRouter = () => (
     <Route exact path="/auth/login" component={Login} />
     <Route exact path="/auth/signup" component={Signup} />
     <Route exact path="/auth/confirm" component={Confirm} />
+    <Route exact path="/auth/resend" component={Resend} />
     <Route component={NoMatch} />
   </Switch>
 );

@@ -18,10 +18,16 @@ import {
   CONFIRM_SUCCESS,
   CONFIRM_FAIL,
   CONFIRM_RESET_STATE,
+  SET_RESEND_USERNAME,
+  ATTEMPT_RESEND,
+  RESEND_SUCCESS,
+  RESEND_FAIL,
+  RESEND_RESET_STATE,
 } from '../constants';
 import loginReducer, { loginInitialState } from './login';
 import signupReducer, { signupInitialState } from './signup';
 import confirmReducer, { confirmInitialState } from './confirm';
+import resendReducer, { resendInitialState } from './resend';
 
 const initialState = {
   login: {
@@ -32,6 +38,9 @@ const initialState = {
   },
   confirm: {
     ...confirmInitialState,
+  },
+  resend: {
+    ...resendInitialState,
   },
 };
 
@@ -149,6 +158,36 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         confirm: confirmReducer(state.confirm, action),
+      };
+    }
+    case SET_RESEND_USERNAME: {
+      return {
+        ...state,
+        resend: resendReducer(state.resend, action),
+      };
+    }
+    case ATTEMPT_RESEND: {
+      return {
+        ...state,
+        resend: resendReducer(state.resend, action),
+      };
+    }
+    case RESEND_SUCCESS: {
+      return {
+        ...state,
+        resend: resendReducer(state.resend, action),
+      };
+    }
+    case RESEND_FAIL: {
+      return {
+        ...state,
+        resend: resendReducer(state.resend, action),
+      };
+    }
+    case RESEND_RESET_STATE: {
+      return {
+        ...state,
+        resend: resendReducer(state.resend, action),
       };
     }
     default:
