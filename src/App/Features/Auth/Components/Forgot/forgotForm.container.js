@@ -1,24 +1,24 @@
 import { connect } from 'react-redux';
 import {
-  setForgotUsername,
+  setUsername,
   forgot,
-  resetForgotState,
+  resetState,
 } from '../../Store/Actions/forgot';
 import ForgotForm from './forgotForm';
 
 const mapStateToProps = state => ({
-  forgotUserName: state.auth.forgot.forgotUserName,
-  forgotUserNameValid: state.auth.forgot.forgotUserNameValid,
-  forgotAttempt: state.auth.forgot.forgotAttempt,
-  forgotHasErrors: state.auth.forgot.forgotHasErrors,
-  forgotErrorMessage: state.auth.forgot.forgotErrorMessage,
-  forgotSuccess: state.auth.forgot.forgotSuccess,
+  userName: state.auth.forgot.userName,
+  userNameValid: state.auth.forgot.userNameValid,
+  attempt: state.auth.forgot.attempt,
+  hasErrors: state.auth.forgot.hasErrors,
+  errorMessage: state.auth.forgot.errorMessage,
+  success: state.auth.forgot.success,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setForgotUsername: text => dispatch(setForgotUsername(text)),
+  setUsername: text => dispatch(setUsername(text)),
   forgot: userName => dispatch(forgot(userName)),
-  resetForgotState: () => dispatch(resetForgotState()),
+  resetState: () => dispatch(resetState()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ForgotForm);

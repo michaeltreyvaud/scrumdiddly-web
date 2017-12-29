@@ -7,12 +7,12 @@ import {
 } from '../constants';
 
 export const forgotInitialState = {
-  forgotUserName: '',
-  forgotUserNameValid: false,
-  forgotAttempt: false,
-  forgotHasErrors: false,
-  forgotErrorMessage: '',
-  forgotSuccess: false,
+  userName: '',
+  userNameValid: false,
+  attempt: false,
+  hasErrors: false,
+  errorMessage: '',
+  success: false,
 };
 
 const forgotReducer = (state = forgotInitialState, action) => {
@@ -21,29 +21,29 @@ const forgotReducer = (state = forgotInitialState, action) => {
       const userName = action.payload.text;
       return {
         ...state,
-        forgotHasErrors: false,
-        forgotErrorMessage: '',
-        forgotUserName: userName,
-        forgotUserNameValid: (userName && userName.length > 0) || false,
+        hasErrors: false,
+        errorMessage: '',
+        userName,
+        userNameValid: (userName && userName.length > 0) || false,
       };
     }
     case ATTEMPT_FORGOT: {
       return {
         ...state,
-        forgotAttempt: true,
+        attempt: true,
       };
     }
     case FORGOT_SUCCESS: {
       return {
         ...forgotInitialState,
-        forgotSuccess: true,
+        success: true,
       };
     }
     case FORGOT_FAIL: {
       return {
         ...forgotInitialState,
-        forgotHasErrors: true,
-        forgotErrorMessage: action.payload.message,
+        hasErrors: true,
+        errorMessage: action.payload.message,
       };
     }
     case FORGOT_RESET_STATE: {

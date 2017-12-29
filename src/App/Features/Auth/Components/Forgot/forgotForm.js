@@ -7,25 +7,25 @@ import AppTheme from '../../../../../Themes';
 
 class ForgotForm extends Component {
   componentWillMount() {
-    this.props.resetForgotState();
+    this.props.resetState();
   }
   componentWillReceiveProps(nextProps) {
     //  Navigate to password reset if send password is successful
-    if ((nextProps.forgotSuccess !== this.props.forgotSuccess) &&
-      (nextProps.forgotSuccess === true && this.props.forgotSuccess === false)) {
+    if ((nextProps.success !== this.props.success) &&
+      (nextProps.success === true && this.props.success === false)) {
       this.props.history.push('/auth/confirmForgotPassword');
     }
   }
   componentWillUnmount() {
-    this.props.resetForgotState();
+    this.props.resetState();
   }
   userNameOnChange(text) {
-    this.props.setForgotUsername(text);
+    this.props.setUsername(text);
   }
   submitForgotForm(event) {
     event.preventDefault();
-    if (this.props.forgotUserNameValid) {
-      this.props.forgot(this.props.forgotUserName);
+    if (this.props.userNameValid) {
+      this.props.forgot(this.props.userName);
     }
   }
   render() {
@@ -38,10 +38,10 @@ class ForgotForm extends Component {
           placeholder="Username"
           type="text"
           style={Styles.userNameInput}
-          value={this.props.forgotUserName}
+          value={this.props.userName}
           onChange={event => this.userNameOnChange(event.target.value)}
         />
-        {this.props.forgotAttempt ?
+        {this.props.attempt ?
           <div style={Styles.loadingContainer}>
             <ReactLoading
               type="spin"
@@ -54,7 +54,7 @@ class ForgotForm extends Component {
         : <input
           type="submit"
           value="Reset Password"
-          style={this.props.forgotUserName
+          style={this.props.userName
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
@@ -75,8 +75,8 @@ class ForgotForm extends Component {
           </button>
         </div>
         <div style={Styles.errorContainer}>
-          {this.props.forgotHasErrors && this.props.forgotErrorMessage &&
-            this.props.forgotErrorMessage !== '' && this.props.forgotErrorMessage}
+          {this.props.hasErrors && this.props.hasErrors &&
+            this.props.errorMessage !== '' && this.props.errorMessage}
         </div>
       </form>
     );
@@ -84,15 +84,15 @@ class ForgotForm extends Component {
 }
 
 ForgotForm.propTypes = {
-  forgotUserName: PropTypes.string.isRequired,
-  forgotUserNameValid: PropTypes.bool.isRequired,
-  forgotAttempt: PropTypes.bool.isRequired,
-  forgotHasErrors: PropTypes.bool.isRequired,
-  forgotErrorMessage: PropTypes.string.isRequired,
-  forgotSuccess: PropTypes.bool.isRequired,
-  setForgotUsername: PropTypes.func.isRequired,
+  userName: PropTypes.string.isRequired,
+  userNameValid: PropTypes.bool.isRequired,
+  attempt: PropTypes.bool.isRequired,
+  hasErrors: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  success: PropTypes.bool.isRequired,
+  setUsername: PropTypes.func.isRequired,
   forgot: PropTypes.func.isRequired,
-  resetForgotState: PropTypes.func.isRequired,
+  resetState: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
