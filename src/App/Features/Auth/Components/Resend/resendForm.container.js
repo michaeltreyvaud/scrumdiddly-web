@@ -1,24 +1,24 @@
 import { connect } from 'react-redux';
 import ResendForm from './resendForm';
 import {
-  setResendUsername,
+  setUsername,
   resend,
-  resetResendState,
+  resetState,
 } from '../../Store/Actions/resend';
 
 const mapStateToProps = state => ({
-  userName: state.auth.resend.resendUserName,
+  userName: state.auth.resend.userName,
   userNameValid: state.auth.resend.userNameValid,
-  attemptResend: state.auth.resend.attemptResend,
-  resendHasErrors: state.auth.resend.resendHasErrors,
-  resendErrorMessage: state.auth.resend.resendErrorMessage,
-  resendSuccess: state.auth.resend.resendSuccess,
+  attempt: state.auth.resend.attempt,
+  hasErrors: state.auth.resend.hasErrors,
+  errorMessage: state.auth.resend.errorMessage,
+  success: state.auth.resend.success,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setResendUsername: text => dispatch(setResendUsername(text)),
+  setUsername: text => dispatch(setUsername(text)),
   resend: userName => dispatch(resend(userName)),
-  resetState: () => dispatch(resetResendState()),
+  resetState: () => dispatch(resetState()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResendForm);

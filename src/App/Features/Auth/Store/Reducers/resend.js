@@ -7,12 +7,12 @@ import {
 } from '../constants';
 
 export const resendInitialState = {
-  resendUserName: '',
+  userName: '',
   userNameValid: false,
-  attemptResend: false,
-  resendHasErrors: false,
-  resendErrorMessage: '',
-  resendSuccess: false,
+  attempt: false,
+  hasErrors: false,
+  errorMessage: '',
+  success: false,
 };
 
 const resendReducer = (state = resendInitialState, action) => {
@@ -21,29 +21,29 @@ const resendReducer = (state = resendInitialState, action) => {
       const userName = action.payload.text;
       return {
         ...state,
-        resendHasErrors: false,
-        resendErrorMessage: '',
-        resendUserName: userName,
+        hasErrors: false,
+        errorMessage: '',
+        userName,
         userNameValid: (userName && userName.length > 0) || false,
       };
     }
     case ATTEMPT_RESEND: {
       return {
         ...state,
-        attemptResend: true,
+        attempt: true,
       };
     }
     case RESEND_SUCCESS: {
       return {
         ...resendInitialState,
-        resendSuccess: true,
+        success: true,
       };
     }
     case RESEND_FAIL: {
       return {
         ...resendInitialState,
-        resendHasErrors: true,
-        resendErrorMessage: action.payload.message,
+        hasErrors: true,
+        errorMessage: action.payload.message,
       };
     }
     case RESEND_RESET_STATE: {

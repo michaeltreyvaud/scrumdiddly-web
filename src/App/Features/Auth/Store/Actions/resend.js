@@ -8,22 +8,22 @@ import {
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
 import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
 
-export const setResendUsername = text => ({
+export const setUsername = text => ({
   type: SET_RESEND_USERNAME,
   payload: {
     text,
   },
 });
 
-export const attemptResend = () => ({
+export const attempt = () => ({
   type: ATTEMPT_RESEND,
 });
 
-export const resendSuccess = () => ({
+export const success = () => ({
   type: RESEND_SUCCESS,
 });
 
-export const resendFail = message => ({
+export const fail = message => ({
   type: RESEND_FAIL,
   payload: {
     message,
@@ -31,7 +31,7 @@ export const resendFail = message => ({
 });
 
 export const resend = userName => (dispatch) => {
-  dispatch(attemptResend());
+  dispatch(attempt());
   const body = {
     userName,
   };
@@ -45,14 +45,14 @@ export const resend = userName => (dispatch) => {
   }).then(cognitoErrorParser)
     .then(handleFetchErrors)
     .then(response => response.json())
-    .then(json => dispatch(resendSuccess(json)))
+    .then(json => dispatch(success(json)))
     .catch((err) => {
       let message = '';
       message = (!err.code) ? 'Unable to connect, please try again' : err.message;
-      return dispatch(resendFail(message));
+      return dispatch(fail(message));
     });
 };
 
-export const resetResendState = () => ({
+export const resetState = () => ({
   type: RESEND_RESET_STATE,
 });

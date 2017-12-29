@@ -11,8 +11,8 @@ class ResendForm extends Component {
   }
   componentWillReceiveProps(nextProps) {
     //  Navigate to confirm route on signup success
-    if ((nextProps.resendSuccess !== this.props.resendSuccess) &&
-      (nextProps.resendSuccess === true && this.props.resendSuccess === false)) {
+    if ((nextProps.success !== this.props.success) &&
+      (nextProps.success === true && this.props.success === false)) {
       this.props.history.push('/auth/confirm');
     }
   }
@@ -20,7 +20,7 @@ class ResendForm extends Component {
     this.props.resetState();
   }
   userNameOnChange(text) {
-    this.props.setResendUsername(text);
+    this.props.setUsername(text);
   }
   submitResendForm(event) {
     event.preventDefault();
@@ -41,7 +41,7 @@ class ResendForm extends Component {
           value={this.props.userName}
           onChange={event => this.userNameOnChange(event.target.value)}
         />
-        {this.props.attemptResend ?
+        {this.props.attempt ?
           <div style={Styles.loadingContainer}>
             <ReactLoading
               type="spin"
@@ -75,8 +75,8 @@ class ResendForm extends Component {
           </button>
         </div>
         <div style={Styles.errorContainer}>
-          {this.props.resendHasErrors && this.props.resendErrorMessage &&
-            this.props.resendErrorMessage !== '' && this.props.resendErrorMessage}
+          {this.props.hasErrors && this.props.errorMessage &&
+            this.props.errorMessage !== '' && this.props.errorMessage}
         </div>
       </form>
     );
@@ -86,13 +86,13 @@ class ResendForm extends Component {
 ResendForm.propTypes = {
   userName: PropTypes.string.isRequired,
   userNameValid: PropTypes.bool.isRequired,
-  attemptResend: PropTypes.bool.isRequired,
-  setResendUsername: PropTypes.func.isRequired,
-  resendHasErrors: PropTypes.bool.isRequired,
-  resendErrorMessage: PropTypes.string.isRequired,
+  attempt: PropTypes.bool.isRequired,
+  hasErrors: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  success: PropTypes.bool.isRequired,
+  setUsername: PropTypes.func.isRequired,
   resend: PropTypes.func.isRequired,
   resetState: PropTypes.func.isRequired,
-  resendSuccess: PropTypes.bool.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
