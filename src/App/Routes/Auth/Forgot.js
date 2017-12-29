@@ -1,5 +1,5 @@
 import React from 'react';
-import ResendForm from '../../Features/Auth/Components/Resend/resendForm.container';
+import ForgotForm from '../../Features/Auth/Components/Forgot/forgotForm.container';
 import AppTheme from '../../../Themes';
 
 const Styles = {
@@ -17,11 +17,11 @@ const Styles = {
   },
 };
 
-const Resend = () => (
+const Forgot = () => (
   <div style={Styles.container}>
-    Resend
-    <ResendForm />
+    Forgotten Password
+    <ForgotForm />
   </div>
 );
 
-export default Resend;
+export default Forgot;

@@ -23,11 +23,17 @@ import {
   RESEND_SUCCESS,
   RESEND_FAIL,
   RESEND_RESET_STATE,
+  SET_FORGOT_USERNAME,
+  ATTEMPT_FORGOT,
+  FORGOT_SUCCESS,
+  FORGOT_FAIL,
+  FORGOT_RESET_STATE,
 } from '../constants';
 import loginReducer, { loginInitialState } from './login';
 import signupReducer, { signupInitialState } from './signup';
 import confirmReducer, { confirmInitialState } from './confirm';
 import resendReducer, { resendInitialState } from './resend';
+import forgotReducer, { forgotInitialState } from './forgot';
 
 const initialState = {
   login: {
@@ -41,6 +47,9 @@ const initialState = {
   },
   resend: {
     ...resendInitialState,
+  },
+  forgot: {
+    ...forgotInitialState,
   },
 };
 
@@ -188,6 +197,36 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         resend: resendReducer(state.resend, action),
+      };
+    }
+    case SET_FORGOT_USERNAME: {
+      return {
+        ...state,
+        forgot: forgotReducer(state.forgot, action),
+      };
+    }
+    case ATTEMPT_FORGOT: {
+      return {
+        ...state,
+        forgot: forgotReducer(state.forgot, action),
+      };
+    }
+    case FORGOT_SUCCESS: {
+      return {
+        ...state,
+        forgot: forgotReducer(state.forgot, action),
+      };
+    }
+    case FORGOT_FAIL: {
+      return {
+        ...state,
+        forgot: forgotReducer(state.forgot, action),
+      };
+    }
+    case FORGOT_RESET_STATE: {
+      return {
+        ...state,
+        forgot: forgotReducer(state.forgot, action),
       };
     }
     default:
