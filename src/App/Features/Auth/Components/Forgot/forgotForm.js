@@ -14,7 +14,7 @@ class ForgotForm extends Component {
     //  Navigate to password reset if send password is successful
     if ((nextProps.forgotSuccess !== this.props.forgotSuccess) &&
       (nextProps.forgotSuccess === true && this.props.forgotSuccess === false)) {
-      this.props.history.push('/auth/reset');
+      this.props.history.push('/auth/confirmForgotPassword');
     }
   }
   componentWillUnmount() {

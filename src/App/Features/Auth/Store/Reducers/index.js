@@ -28,12 +28,20 @@ import {
   FORGOT_SUCCESS,
   FORGOT_FAIL,
   FORGOT_RESET_STATE,
+  SET_CONFIRM_FORGOT_PASSWORD_USERNAME,
+  SET_CONFIRM_FORGOT_PASSWORD_CODE,
+  SET_CONFIRM_FORGOT_PASSWORD_PASSWORD,
+  ATTEMPT_CONFIRM_FORGOT_PASSWORD,
+  CONFIRM_FORGOT_PASSWORD_SUCCESS,
+  CONFIRM_FORGOT_PASSWORD_FAIL,
+  CONFIRM_FORGOT_PASSWORD_RESET_STATE,
 } from '../constants';
 import loginReducer, { loginInitialState } from './login';
 import signupReducer, { signupInitialState } from './signup';
 import confirmReducer, { confirmInitialState } from './confirm';
 import resendReducer, { resendInitialState } from './resend';
 import forgotReducer, { forgotInitialState } from './forgot';
+import confirmForgotPasswordReducer, { confirmForgotPasswordInitialState } from './confirmForgotPassword';
 
 const initialState = {
   login: {
@@ -50,6 +58,9 @@ const initialState = {
   },
   forgot: {
     ...forgotInitialState,
+  },
+  confirmForgotPassword: {
+    ...confirmForgotPasswordInitialState,
   },
 };
 
@@ -227,6 +238,48 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         forgot: forgotReducer(state.forgot, action),
+      };
+    }
+    case SET_CONFIRM_FORGOT_PASSWORD_USERNAME: {
+      return {
+        ...state,
+        confirmForgotPassword: confirmForgotPasswordReducer(state.confirmForgotPassword, action),
+      };
+    }
+    case SET_CONFIRM_FORGOT_PASSWORD_CODE: {
+      return {
+        ...state,
+        confirmForgotPassword: confirmForgotPasswordReducer(state.confirmForgotPassword, action),
+      };
+    }
+    case SET_CONFIRM_FORGOT_PASSWORD_PASSWORD: {
+      return {
+        ...state,
+        confirmForgotPassword: confirmForgotPasswordReducer(state.confirmForgotPassword, action),
+      };
+    }
+    case ATTEMPT_CONFIRM_FORGOT_PASSWORD: {
+      return {
+        ...state,
+        confirmForgotPassword: confirmForgotPasswordReducer(state.confirmForgotPassword, action),
+      };
+    }
+    case CONFIRM_FORGOT_PASSWORD_SUCCESS: {
+      return {
+        ...state,
+        confirmForgotPassword: confirmForgotPasswordReducer(state.confirmForgotPassword, action),
+      };
+    }
+    case CONFIRM_FORGOT_PASSWORD_FAIL: {
+      return {
+        ...state,
+        confirmForgotPassword: confirmForgotPasswordReducer(state.confirmForgotPassword, action),
+      };
+    }
+    case CONFIRM_FORGOT_PASSWORD_RESET_STATE: {
+      return {
+        ...state,
+        confirmForgotPassword: confirmForgotPasswordReducer(state.confirmForgotPassword, action),
       };
     }
     default:

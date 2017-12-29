@@ -6,6 +6,7 @@ import Signup from '../Routes/Auth/Signup';
 import Confirm from '../Routes/Auth/Confirm';
 import Resend from '../Routes/Auth/Resend';
 import Forgot from '../Routes/Auth/Forgot';
+import ConfirmForgotPassword from '../Routes/Auth/ConfirmForgotPassword';
 import NoMatch from '../Routes/NoMatch';
 
 const AppRouter = () => (
@@ -17,6 +18,7 @@ const AppRouter = () => (
     <Route exact path="/auth/confirm" component={Confirm} />
     <Route exact path="/auth/resend" component={Resend} />
     <Route exact path="/auth/forgot" component={Forgot} />
+    <Route exact path="/auth/confirmForgotPassword" component={ConfirmForgotPassword} />
     <Route component={NoMatch} />
   </Switch>
 );
