@@ -174,7 +174,8 @@ export const confirmAccount = (userName, confirmationCode) => (dispatch) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
-  }).then(handleFetchErrors)
+  }).then(cognitoErrorParser)
+    .then(handleFetchErrors)
     .then(response => response.json())
     .then(json => dispatch(confirmSuccess(json)))
     .catch((err) => {

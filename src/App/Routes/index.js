@@ -35,12 +35,29 @@ const Styles = {
     justifyContent: 'center',
     height: '40px',
     backgroundColor: AppTheme.white,
-    color: AppTheme.blue,
+    color: AppTheme.pink,
     fontSize: AppTheme.mediumFont,
     border: 'none',
     borderRadius: '5px',
     fontWeight: 'bold',
     margin: '10px',
+  },
+  loginButton: {
+    display: 'flex',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '40px',
+    backgroundColor: AppTheme.pink,
+    color: AppTheme.white,
+    fontSize: AppTheme.mediumFont,
+    border: 'none',
+    borderRadius: '5px',
+    fontWeight: 'bold',
+    margin: '10px',
+    borderWidth: '1px',
+    borderColor: AppTheme.white,
+    borderStyle: 'solid',
   },
 };
 
@@ -48,7 +65,7 @@ const Button = withRouter(({ history, label, path }) => (
   <button
     type="button"
     onClick={() => { history.push(path); }}
-    style={Styles.button}
+    style={(label === 'Login') ? Styles.loginButton : Styles.button}
   >
     {label}
   </button>

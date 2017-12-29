@@ -4,6 +4,72 @@ const handleCognitoErrors = (res) => {
     return res.json().then((json) => {
       let displayMessage = '';
       switch (json.error) {
+        //  Common errors
+        case 'AccessDeniedException': {
+          displayMessage = 'Permission denied';
+          break;
+        }
+        case 'IncompleteSignature': {
+          displayMessage = 'Unable to connect, please try again';
+          break;
+        }
+        case 'InternalFailure': {
+          displayMessage = 'Unable to connect, please try again';
+          break;
+        }
+        case 'InvalidAction': {
+          displayMessage = 'Unable to connect, please try again';
+          break;
+        }
+        case 'InvalidClientTokenId': {
+          displayMessage = 'Permission denied';
+          break;
+        }
+        case 'InvalidParameterCombination': {
+          displayMessage = 'Invalid details provided, please try again';
+          break;
+        }
+        case 'InvalidParameterValue': {
+          displayMessage = 'Invalid details provided, please try again';
+          break;
+        }
+        case 'InvalidQueryParameter': {
+          displayMessage = 'Invalid details provided, please try again';
+          break;
+        }
+        case 'MalformedQueryString': {
+          displayMessage = 'Invalid details provided, please try again';
+          break;
+        }
+        case 'MissingAction': {
+          displayMessage = 'Invalid details provided, please try again';
+          break;
+        }
+        case 'MissingAuthenticationToken': {
+          displayMessage = 'Permission denied';
+          break;
+        }
+        case 'MissingParameter': {
+          displayMessage = 'Invalid details provided, please try again';
+          break;
+        }
+        case 'OptInRequired': {
+          displayMessage = 'Permission denied';
+          break;
+        }
+        case 'RequestExpired': {
+          displayMessage = 'Request has expired, please try again';
+          break;
+        }
+        case 'ThrottlingException': {
+          displayMessage = 'Server is busy, please try again later';
+          break;
+        }
+        case 'ValidationError': {
+          displayMessage = 'Invalid details provided, please try again';
+          break;
+        }
+        //  Signup
         case 'CodeDeliveryFailureException': {
           displayMessage = 'Unable to connect, please try again';
           break;
@@ -45,7 +111,7 @@ const handleCognitoErrors = (res) => {
           break;
         }
         case 'TooManyRequestsException': {
-          displayMessage = 'Too many requests, please try again later';
+          displayMessage = 'Server is busy, please try again later';
           break;
         }
         case 'UnexpectedLambdaException': {
@@ -58,6 +124,27 @@ const handleCognitoErrors = (res) => {
         }
         case 'UsernameExistsException': {
           displayMessage = 'Username already exists, please try another';
+          break;
+        }
+        //  Confirm Account
+        case 'AliasExistsException': {
+          displayMessage = 'An account with this email has already been confirmed';
+          break;
+        }
+        case 'CodeMismatchException': {
+          displayMessage = 'Invalid Code, please check your email and try again';
+          break;
+        }
+        case 'LimitExceededException': {
+          displayMessage = 'Server is busy, please try again later';
+          break;
+        }
+        case 'TooManyFailedAttemptsException': {
+          displayMessage = 'Multiple failed attempts detected, please try again later';
+          break;
+        }
+        case 'UserNotFoundException': {
+          displayMessage = 'Account was not found';
           break;
         }
         default: {
