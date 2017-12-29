@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
+import { withRouter } from 'react-router-dom';
 import './signupForm.css';
 import Styles from './signupForm.styles';
 import AppTheme from '../../../../../Themes';
+
+const RouteButton = withRouter(({ history, label, path }) => (
+  <button
+    type="button"
+    onClick={() => { history.push(path); }}
+    style={(label === 'Login') ? Styles.loginButton : Styles.forgotButton}
+  >
+    {label}
+  </button>
+));
 
 class SignupForm extends Component {
   userNameOnChange(text) {
@@ -69,6 +80,16 @@ class SignupForm extends Component {
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
+        <div style={Styles.buttonContainer}>
+          <RouteButton
+            label="Login"
+            path="/auth/login"
+          />
+          <RouteButton
+            label="Forgot your password?"
+            path="/auth/forgot"
+          />
+        </div>
         <div style={Styles.errorContainer}>
           {this.props.signupHasErrors && this.props.signupErrorMessage &&
             this.props.signupErrorMessage !== '' && this.props.signupErrorMessage}

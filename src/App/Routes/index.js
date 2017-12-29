@@ -1,65 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import AppTheme from '../../Themes';
-
-const Styles = {
-  container: {
-    display: 'flex',
-    flex: 1,
-    backgroundColor: AppTheme.pink,
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: AppTheme.white,
-    fontWeight: 'bold',
-    fontSize: AppTheme.largeFont,
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '30%',
-    maxWidth: '450px',
-    minWidth: '300px',
-    alignItems: 'center',
-  },
-  buttonContainer: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-    width: '100%',
-  },
-  button: {
-    display: 'flex',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '40px',
-    backgroundColor: AppTheme.white,
-    color: AppTheme.pink,
-    fontSize: AppTheme.mediumFont,
-    border: 'none',
-    borderRadius: '5px',
-    fontWeight: 'bold',
-    margin: '10px',
-  },
-  loginButton: {
-    display: 'flex',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '40px',
-    backgroundColor: AppTheme.pink,
-    color: AppTheme.white,
-    fontSize: AppTheme.mediumFont,
-    border: 'none',
-    borderRadius: '5px',
-    fontWeight: 'bold',
-    margin: '10px',
-    borderWidth: '1px',
-    borderColor: AppTheme.white,
-    borderStyle: 'solid',
-  },
-};
+import Styles from './index.styles';
 
 const Button = withRouter(({ history, label, path }) => (
   <button
