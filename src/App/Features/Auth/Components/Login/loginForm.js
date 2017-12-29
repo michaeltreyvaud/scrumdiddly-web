@@ -59,7 +59,7 @@ class LoginForm extends Component {
           <div style={Styles.loadingContainer}>
             <ReactLoading
               type="spin"
-              color={AppTheme.blue}
+              color={AppTheme.pink}
               delay={0}
               height="30px"
               width="30px"
