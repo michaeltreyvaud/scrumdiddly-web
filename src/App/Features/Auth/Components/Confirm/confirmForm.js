@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
 import { withRouter } from 'react-router-dom';
-import './confirmForm.css';
 import Styles from './confirmForm.styles';
 import AppTheme from '../../../../../Themes';
 
@@ -12,8 +11,8 @@ class ConfirmForm extends Component {
   }
   componentWillReceiveProps(nextProps) {
     //  Navigate to login on confirm success
-    if ((nextProps.confirmSuccess !== this.props.confirmSuccess) &&
-      (nextProps.confirmSuccess === true && this.props.confirmSuccess === false)) {
+    if ((nextProps.success !== this.props.success) &&
+      (nextProps.success === true && this.props.success === false)) {
       this.props.history.push('/auth/login');
     }
   }
@@ -21,15 +20,15 @@ class ConfirmForm extends Component {
     this.props.resetState();
   }
   userNameOnChange(text) {
-    this.props.setConfirmUsername(text);
+    this.props.setUsername(text);
   }
   confirmationCodeOnChange(text) {
-    this.props.setConfirmCode(text);
+    this.props.setCode(text);
   }
   submitConfirmForm(event) {
     event.preventDefault();
-    if (this.props.validUsername && this.props.validConfirmationCode) {
-      this.props.confirmAccount(this.props.userName, this.props.confirmationCode);
+    if (this.props.userNameValid && this.props.codeValid) {
+      this.props.confirmAccount(this.props.userName, this.props.code);
     }
   }
   render() {
@@ -49,10 +48,10 @@ class ConfirmForm extends Component {
           placeholder="Verification Code"
           type="text"
           style={Styles.confirmationCodeInput}
-          value={this.props.confirmationCode}
+          value={this.props.code}
           onChange={event => this.confirmationCodeOnChange(event.target.value)}
         />
-        {this.props.confirmAttempt ?
+        {this.props.attempt ?
           <div style={Styles.loadingContainer}>
             <ReactLoading
               type="spin"
@@ -65,7 +64,7 @@ class ConfirmForm extends Component {
         : <input
           type="submit"
           value="Confim Account"
-          style={this.props.validUsername && this.props.validConfirmationCode
+          style={this.props.userNameValid && this.props.codeValid
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
@@ -82,8 +81,8 @@ class ConfirmForm extends Component {
           Please enter the verification code that was sent to your supplied email address
         </div>
         <div style={Styles.errorContainer}>
-          {this.props.confirmHasErrors && this.props.confirmErrorMessage &&
-            this.props.confirmErrorMessage !== '' && this.props.confirmErrorMessage}
+          {this.props.hasErrors && this.props.errorMessage &&
+            this.props.errorMessage !== '' && this.props.errorMessage}
         </div>
       </form>
     );
@@ -92,20 +91,20 @@ class ConfirmForm extends Component {
 
 ConfirmForm.propTypes = {
   userName: PropTypes.string.isRequired,
-  validUsername: PropTypes.bool.isRequired,
-  confirmationCode: PropTypes.string.isRequired,
-  validConfirmationCode: PropTypes.bool.isRequired,
-  confirmAttempt: PropTypes.bool.isRequired,
-  confirmHasErrors: PropTypes.bool.isRequired,
-  confirmErrorMessage: PropTypes.string.isRequired,
-  setConfirmUsername: PropTypes.func.isRequired,
-  setConfirmCode: PropTypes.func.isRequired,
+  userNameValid: PropTypes.bool.isRequired,
+  code: PropTypes.string.isRequired,
+  codeValid: PropTypes.bool.isRequired,
+  attempt: PropTypes.bool.isRequired,
+  hasErrors: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  success: PropTypes.bool.isRequired,
+  setUsername: PropTypes.func.isRequired,
+  setCode: PropTypes.func.isRequired,
   confirmAccount: PropTypes.func.isRequired,
   resetState: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-  confirmSuccess: PropTypes.bool.isRequired,
 };
 
 export default withRouter(ConfirmForm);

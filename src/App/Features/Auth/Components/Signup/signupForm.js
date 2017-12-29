@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
 import { withRouter } from 'react-router-dom';
-import './signupForm.css';
 import Styles from './signupForm.styles';
 import AppTheme from '../../../../../Themes';
 

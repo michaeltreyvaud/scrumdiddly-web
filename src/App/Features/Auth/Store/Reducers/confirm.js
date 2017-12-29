@@ -8,14 +8,14 @@ import {
 } from '../constants';
 
 export const confirmInitialState = {
-  confirmUserName: '',
-  confirmUserNameValid: false,
-  confirmationCode: '',
-  confirmationCodeValid: false,
-  confirmAttempt: false,
-  confirmHasErrors: false,
-  confirmErrorMessage: '',
-  confirmSuccess: false,
+  userName: '',
+  userNameValid: false,
+  code: '',
+  codeValid: false,
+  attempt: false,
+  hasErrors: false,
+  errorMessage: '',
+  success: false,
 };
 
 const confirmReducer = (state = confirmInitialState, action) => {
@@ -24,39 +24,40 @@ const confirmReducer = (state = confirmInitialState, action) => {
       const userName = action.payload.text;
       return {
         ...state,
-        confirmHasErrors: false,
-        confirmErrorMessage: '',
-        confirmUserName: userName,
-        confirmUserNameValid: (userName && userName.length > 0) || false,
+        hasErrors: false,
+        errorMessage: '',
+        userName,
+        userNameValid: (userName && userName.length > 0) || false,
       };
     }
     case SET_CONFIRM_CODE: {
       const confirmationCode = action.payload.text;
       return {
         ...state,
-        confirmHasErrors: false,
-        confirmErrorMessage: '',
-        confirmationCode,
-        confirmationCodeValid: (confirmationCode && confirmationCode.length > 0) || false,
+        hasErrors: false,
+        errorMessage: '',
+        code: confirmationCode,
+        codeValid: (confirmationCode && confirmationCode.length > 0) || false,
       };
     }
     case ATTEMPT_CONFIRM: {
       return {
         ...state,
-        confirmAttempt: true,
+        attempt: true,
       };
     }
     case CONFIRM_SUCCESS: {
       return {
         ...confirmInitialState,
-        confirmSuccess: true,
+        success: true,
       };
     }
     case CONFIRM_FAIL: {
+      const errorMessage = action.payload.message;
       return {
         ...confirmInitialState,
-        confirmHasErrors: true,
-        confirmErrorMessage: action.payload.message,
+        hasErrors: true,
+        errorMessage,
       };
     }
     case CONFIRM_RESET_STATE: {

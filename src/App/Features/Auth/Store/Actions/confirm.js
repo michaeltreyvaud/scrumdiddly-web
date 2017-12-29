@@ -9,14 +9,14 @@ import {
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
 import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
 
-export const setConfirmUsername = text => ({
+export const setUsername = text => ({
   type: SET_CONFIRM_USERNAME,
   payload: {
     text,
   },
 });
 
-export const setConfirmCode = text => ({
+export const setCode = text => ({
   type: SET_CONFIRM_CODE,
   payload: {
     text,
@@ -62,6 +62,6 @@ export const confirmAccount = (userName, confirmationCode) => (dispatch) => {
     });
 };
 
-export const resetConfirmState = () => ({
+export const resetState = () => ({
   type: CONFIRM_RESET_STATE,
 });

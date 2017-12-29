@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
 import { withRouter } from 'react-router-dom';
 import AppTheme from '../../../../../Themes';
-import './loginForm.css';
 import Styles from './loginForm.styles';
 
 const RouteButton = withRouter(({ history, label, path }) => (
