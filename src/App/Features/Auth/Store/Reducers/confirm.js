@@ -15,6 +15,7 @@ export const confirmInitialState = {
   confirmAttempt: false,
   confirmHasErrors: false,
   confirmErrorMessage: '',
+  confirmSuccess: false,
 };
 
 const confirmReducer = (state = confirmInitialState, action) => {
@@ -46,7 +47,10 @@ const confirmReducer = (state = confirmInitialState, action) => {
       };
     }
     case CONFIRM_SUCCESS: {
-      return confirmInitialState;
+      return {
+        ...confirmInitialState,
+        confirmSuccess: true,
+      };
     }
     case CONFIRM_FAIL: {
       return {

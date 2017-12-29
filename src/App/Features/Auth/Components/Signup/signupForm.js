@@ -93,10 +93,10 @@ class SignupForm extends Component {
           </button>
           <button
             type="button"
-            onClick={() => { this.props.history.push('/auth/forgot'); }}
+            onClick={() => { this.props.history.push('/auth/confirm'); }}
             style={Styles.forgotButton}
           >
-            Forgot your password?
+            Confirm Account?
           </button>
         </div>
         <div style={Styles.errorContainer}>

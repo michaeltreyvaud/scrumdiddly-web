@@ -68,6 +68,36 @@ const Styles = {
     marginTop: '10px',
     height: '40px',
   },
+  buttonContainer: {
+    display: 'flex',
+    flex: 1,
+    width: '100%',
+    justifyContent: 'space-between',
+  },
+  loginButton: {
+    border: 'none',
+    backgroundColor: AppTheme.pink,
+    height: '25px',
+    width: '50%',
+    marginTop: '10px',
+    textAlign: 'left',
+    padding: '0px',
+    color: AppTheme.white,
+    outline: 'none',
+    cursor: 'pointer',
+  },
+  signupButton: {
+    border: 'none',
+    backgroundColor: AppTheme.pink,
+    height: '25px',
+    width: '50%',
+    marginTop: '10px',
+    textAlign: 'right',
+    padding: '0px',
+    color: AppTheme.white,
+    outline: 'none',
+    cursor: 'pointer',
+  },
 };
 
 export default Styles;

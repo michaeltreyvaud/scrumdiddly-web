@@ -59,6 +59,22 @@ class ResendForm extends Component {
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
+        <div style={Styles.buttonContainer}>
+          <button
+            type="button"
+            onClick={() => { this.props.history.push('/auth/login'); }}
+            style={Styles.loginButton}
+          >
+            Login
+          </button>
+          <button
+            type="button"
+            onClick={() => { this.props.history.push('/auth/signup'); }}
+            style={Styles.signupButton}
+          >
+            Signup
+          </button>
+        </div>
         <div style={Styles.errorContainer}>
           {this.props.resendHasErrors && this.props.resendErrorMessage &&
             this.props.resendErrorMessage !== '' && this.props.resendErrorMessage}

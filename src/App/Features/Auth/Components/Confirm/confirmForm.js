@@ -10,6 +10,13 @@ class ConfirmForm extends Component {
   componentWillMount() {
     this.props.resetState();
   }
+  componentWillReceiveProps(nextProps) {
+    //  Navigate to login on confirm success
+    if ((nextProps.confirmSuccess !== this.props.confirmSuccess) &&
+      (nextProps.confirmSuccess === true && this.props.confirmSuccess === false)) {
+      this.props.history.push('/auth/login');
+    }
+  }
   componentWillUnmount() {
     this.props.resetState();
   }
@@ -98,6 +105,7 @@ ConfirmForm.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  confirmSuccess: PropTypes.bool.isRequired,
 };
 
 export default withRouter(ConfirmForm);

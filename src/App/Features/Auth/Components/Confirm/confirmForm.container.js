@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
   confirmAttempt: state.auth.confirm.confirmAttempt,
   confirmHasErrors: state.auth.confirm.confirmHasErrors,
   confirmErrorMessage: state.auth.confirm.confirmErrorMessage,
+  confirmSuccess: state.auth.confirm.confirmSuccess,
 });
 
 const mapDispatchToProps = dispatch => ({
