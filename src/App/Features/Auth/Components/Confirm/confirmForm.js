@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactLoading from 'react-loading';
 import { withRouter } from 'react-router-dom';
 import Styles from './confirmForm.styles';
-import AppTheme from '../../../../../Themes';
+import Input from '../../../../Common/Forms/input';
+import Submit from '../../../../Common/Forms/submit';
+import Loading from '../../../../Common/Forms/loading';
+import ErrorContainer from '../../../../Common/Forms/errorContainer';
+import Description from '../../../../Common/Forms/description';
+import NavButton from '../../../../Common/Forms/navButton';
 
 class ConfirmForm extends Component {
   componentWillMount() {
     this.props.resetState();
   }
   componentWillReceiveProps(nextProps) {
-    //  Navigate to login on confirm success
     if ((nextProps.success !== this.props.success) &&
       (nextProps.success === true && this.props.success === false)) {
       this.props.history.push('/auth/login');
@@ -32,58 +35,41 @@ class ConfirmForm extends Component {
     }
   }
   render() {
+    const description = 'Please enter the verification code that was sent to your supplied email address';
     return (
       <form
         onSubmit={event => this.submitConfirmForm(event)}
         style={Styles.form}
       >
-        <input
+        <Input
           placeholder="Username"
           type="text"
-          style={Styles.userNameInput}
           value={this.props.userName}
           onChange={event => this.userNameOnChange(event.target.value)}
         />
-        <input
+        <Input
           placeholder="Verification Code"
           type="text"
-          style={Styles.confirmationCodeInput}
           value={this.props.code}
           onChange={event => this.confirmationCodeOnChange(event.target.value)}
         />
-        {this.props.attempt ?
-          <div style={Styles.loadingContainer}>
-            <ReactLoading
-              type="spin"
-              color={AppTheme.pink}
-              delay={0}
-              height="30px"
-              width="30px"
-            />
-          </div>
-        : <input
-          type="submit"
+        {this.props.attempt ? <Loading /> : <Submit
           value="Confim Account"
-          style={this.props.userNameValid && this.props.codeValid
-            ? Styles.submitButtonValid
-            : Styles.submitButtonInValid}
+          valid={this.props.userNameValid && this.props.codeValid}
         />}
         <div style={Styles.buttonContainer}>
-          <button
-            type="button"
+          <NavButton
+            text="Resend code?"
             onClick={() => { this.props.history.push('/auth/resend'); }}
-            style={Styles.resendButton}
-          >
-            Resend code?
-          </button>
+          />
         </div>
-        <div style={Styles.description}>
-          Please enter the verification code that was sent to your supplied email address
-        </div>
-        <div style={Styles.errorContainer}>
-          {this.props.hasErrors && this.props.errorMessage &&
-            this.props.errorMessage !== '' && this.props.errorMessage}
-        </div>
+        <Description
+          description={description}
+        />
+        <ErrorContainer
+          displayErrors={this.props.hasErrors}
+          errorMessage={this.props.errorMessage}
+        />
       </form>
     );
   }

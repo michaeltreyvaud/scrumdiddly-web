@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactLoading from 'react-loading';
 import { withRouter } from 'react-router-dom';
 import Styles from './confirmForgotPasswordForm.styles';
-import AppTheme from '../../../../../Themes';
+import Input from '../../../../Common/Forms/input';
+import Loading from '../../../../Common/Forms/loading';
+import Submit from '../../../../Common/Forms/submit';
+import ErrorContainer from '../../../../Common/Forms/errorContainer';
+import NavButton from '../../../../Common/Forms/navButton';
 
 class ConfirmForgotPasswordForm extends Component {
   componentWillMount() {
@@ -41,66 +44,45 @@ class ConfirmForgotPasswordForm extends Component {
         onSubmit={event => this.submitSignupForm(event)}
         style={Styles.form}
       >
-        <input
+        <Input
           placeholder="Username"
           type="text"
-          style={Styles.inputField}
           value={this.props.userName}
           onChange={event => this.userNameOnChange(event.target.value)}
         />
-        <input
+        <Input
           placeholder="Verification Code"
           type="text"
-          style={Styles.inputField}
           value={this.props.code}
           onChange={event => this.codeOnChange(event.target.value)}
         />
-        <input
+        <Input
           placeholder="New Password"
           type="password"
-          style={Styles.inputField}
           value={this.props.password}
           onChange={event => this.passwordOnChange(event.target.value)}
         />
-        {this.props.attempt ?
-          <div style={Styles.loadingContainer}>
-            <ReactLoading
-              type="spin"
-              color={AppTheme.pink}
-              delay={0}
-              height="30px"
-              width="30px"
-            />
-          </div>
-        : <input
-          type="submit"
+        {this.props.attempt ? <Loading /> : <Submit
           value="Reset"
-          style={this.props.userNameValid &&
+          valid={this.props.userNameValid &&
             this.props.codeValid &&
-            this.props.passwordValid
-            ? Styles.submitButtonValid
-            : Styles.submitButtonInValid}
+            this.props.passwordValid}
         />}
         <div style={Styles.buttonContainer}>
-          <button
-            type="button"
+          <NavButton
+            direction
+            text="Login"
             onClick={() => { this.props.history.push('/auth/login'); }}
-            style={Styles.loginButton}
-          >
-            Login
-          </button>
-          <button
-            type="button"
+          />
+          <NavButton
+            text="Signup"
             onClick={() => { this.props.history.push('/auth/signup'); }}
-            style={Styles.signupButton}
-          >
-            Signup
-          </button>
+          />
         </div>
-        <div style={Styles.errorContainer}>
-          {this.props.hasErrors && this.props.errorMessage &&
-            this.props.errorMessage !== '' && this.props.errorMessage}
-        </div>
+        <ErrorContainer
+          displayErrors={this.props.hasErrors}
+          errorMessage={this.props.errorMessage}
+        />
       </form>
     );
   }

@@ -1,0 +1,17 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import Styles from './errorContainer.styles';
+
+const ErrorContainer = ({ displayErrors, errorMessage }) => (
+  <div style={Styles.errorContainer}>
+    {displayErrors && errorMessage &&
+      errorMessage !== '' && errorMessage}
+  </div>
+);
+
+ErrorContainer.propTypes = {
+  displayErrors: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+};
+
+export default ErrorContainer;

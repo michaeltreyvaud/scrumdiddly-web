@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactLoading from 'react-loading';
 import { withRouter } from 'react-router-dom';
-import AppTheme from '../../../../../Themes';
 import Styles from './loginForm.styles';
+import Input from '../../../../Common/Forms/input';
+import Submit from '../../../../Common/Forms/submit';
+import Loading from '../../../../Common/Forms/loading';
+import ErrorContainer from '../../../../Common/Forms/errorContainer';
+import NavButton from '../../../../Common/Forms/navButton';
 
 class LoginForm extends Component {
   componentWillMount() {
@@ -30,57 +33,37 @@ class LoginForm extends Component {
         onSubmit={event => this.submitLoginForm(event)}
         style={Styles.form}
       >
-        <input
+        <Input
           placeholder="Username or Email"
           type="text"
-          style={Styles.emailInput}
           value={this.props.userName}
           onChange={event => this.userNameOnChange(event.target.value)}
         />
-        <input
+        <Input
           placeholder="Password"
           type="password"
-          style={Styles.passwordInput}
           value={this.props.password}
           onChange={event => this.passwordOnChange(event.target.value)}
         />
-        {this.props.attempt ?
-          <div style={Styles.loadingContainer}>
-            <ReactLoading
-              type="spin"
-              color={AppTheme.pink}
-              delay={0}
-              height="30px"
-              width="30px"
-            />
-          </div>
-        : <input
-          type="submit"
+        {this.props.attempt ? <Loading /> : <Submit
           value="Login"
-          style={this.props.userNameValid && this.props.passwordValid
-            ? Styles.submitButtonValid
-            : Styles.submitButtonInValid}
+          valid={this.props.userNameValid && this.props.passwordValid}
         />}
         <div style={Styles.buttonContainer}>
-          <button
-            type="button"
+          <NavButton
+            direction
+            text="Signup"
             onClick={() => { this.props.history.push('/auth/signup'); }}
-            style={Styles.signupButton}
-          >
-            Signup
-          </button>
-          <button
-            type="button"
+          />
+          <NavButton
+            text="Forgot your password?"
             onClick={() => { this.props.history.push('/auth/forgot'); }}
-            style={Styles.forgotButton}
-          >
-            Forgot your password?
-          </button>
+          />
         </div>
-        <div style={Styles.errorContainer}>
-          {this.props.hasErrors && this.props.errorMessage &&
-            this.props.errorMessage !== '' && this.props.errorMessage}
-        </div>
+        <ErrorContainer
+          displayErrors={this.props.hasErrors}
+          errorMessage={this.props.errorMessage}
+        />
       </form>
     );
   }
