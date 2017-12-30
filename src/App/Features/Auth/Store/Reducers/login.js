@@ -5,7 +5,7 @@ import {
   LOGIN_FAIL,
   SET_LOGIN_PASSWORD,
   LOGIN_RESET_STATE,
-} from '../constants';
+} from '../ActionTypes/login';
 
 export const loginInitialState = {
   userName: '',

@@ -6,7 +6,7 @@ import {
   SIGNUP_FAIL,
   SET_SIGNUP_USERNAME,
   SIGNUP_RESET_STATE,
-} from '../constants';
+} from '../ActionTypes/signup';
 import validateEmail from '../../../../Util/emailCheck';
 
 export const signupInitialState = {

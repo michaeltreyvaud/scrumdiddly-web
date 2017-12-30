@@ -4,7 +4,7 @@ import {
   FORGOT_SUCCESS,
   FORGOT_FAIL,
   FORGOT_RESET_STATE,
-} from '../constants';
+} from '../ActionTypes/forgot';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
 import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
 

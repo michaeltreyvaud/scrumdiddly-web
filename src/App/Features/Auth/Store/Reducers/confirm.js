@@ -5,7 +5,7 @@ import {
   CONFIRM_SUCCESS,
   CONFIRM_FAIL,
   CONFIRM_RESET_STATE,
-} from '../constants';
+} from '../ActionTypes/confirm';
 
 export const confirmInitialState = {
   userName: '',

@@ -4,7 +4,7 @@ import {
   RESEND_SUCCESS,
   RESEND_FAIL,
   RESEND_RESET_STATE,
-} from '../constants';
+} from '../ActionTypes/resend';
 
 export const resendInitialState = {
   userName: '',

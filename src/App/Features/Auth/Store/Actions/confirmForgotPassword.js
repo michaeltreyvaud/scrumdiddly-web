@@ -6,7 +6,7 @@ import {
   CONFIRM_FORGOT_PASSWORD_SUCCESS,
   CONFIRM_FORGOT_PASSWORD_FAIL,
   CONFIRM_FORGOT_PASSWORD_RESET_STATE,
-} from '../constants';
+} from '../ActionTypes/confirmForgotPassword';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
 import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
 

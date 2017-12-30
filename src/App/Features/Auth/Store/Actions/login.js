@@ -5,7 +5,7 @@ import {
   LOGIN_FAIL,
   LOGIN_RESET_STATE,
   SET_LOGIN_PASSWORD,
-} from '../constants';
+} from '../ActionTypes/login';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
 import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
 
