@@ -1,6 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styles from './input.styles';
+import AppTheme from '../../../Themes';
+
+const Style = {
+  width: '100%',
+  color: AppTheme.white,
+  backgroundColor: 'transparent',
+  border: 'none',
+  borderBottomStyle: 'solid',
+  borderBottomWidth: '1px',
+  borderBottomColor: AppTheme.white,
+  fontSize: AppTheme.largeFont,
+  outline: 'none',
+  marginTop: '30px',
+};
 
 const Input = ({
   placeholder,
@@ -11,7 +24,7 @@ const Input = ({
   <input
     placeholder={placeholder}
     type={type}
-    style={Styles.input}
+    style={Style}
     value={value}
     onChange={event => onChange(event)}
   />
