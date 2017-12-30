@@ -8,7 +8,7 @@ import {
   CONFIRM_FORGOT_PASSWORD_RESET_STATE,
 } from '../ActionTypes/confirmForgotPassword';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
-import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
+import cognitoErrorParser from '../../../../Util/Cognito/confirmForgotPasswordErrors';
 
 export const setUserName = text => ({
   type: SET_CONFIRM_FORGOT_PASSWORD_USERNAME,

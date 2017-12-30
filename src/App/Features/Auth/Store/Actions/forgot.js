@@ -6,7 +6,7 @@ import {
   FORGOT_RESET_STATE,
 } from '../ActionTypes/forgot';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
-import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
+import cognitoErrorParser from '../../../../Util/Cognito/forgotErrors';
 
 export const setUsername = text => ({
   type: SET_FORGOT_USERNAME,

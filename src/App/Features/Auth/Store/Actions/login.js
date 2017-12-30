@@ -7,7 +7,7 @@ import {
   SET_LOGIN_PASSWORD,
 } from '../ActionTypes/login';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
-import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
+import cognitoErrorParser from '../../../../Util/Cognito/loginErrors';
 
 export const setUsername = text => ({
   type: SET_LOGIN_USERNAME,

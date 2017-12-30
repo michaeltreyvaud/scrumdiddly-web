@@ -7,7 +7,7 @@ import {
   CONFIRM_RESET_STATE,
 } from '../ActionTypes/confirm';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
-import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
+import cognitoErrorParser from '../../../../Util/Cognito/confirmErrors';
 
 export const setUsername = text => ({
   type: SET_CONFIRM_USERNAME,

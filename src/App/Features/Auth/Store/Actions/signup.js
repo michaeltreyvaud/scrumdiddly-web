@@ -8,7 +8,7 @@ import {
   SIGNUP_RESET_STATE,
 } from '../ActionTypes/signup';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
-import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
+import cognitoErrorParser from '../../../../Util/Cognito/signupErrors';
 
 export const setUsername = text => ({
   type: SET_SIGNUP_USERNAME,

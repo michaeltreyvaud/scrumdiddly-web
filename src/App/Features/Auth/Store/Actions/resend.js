@@ -6,7 +6,7 @@ import {
   RESEND_RESET_STATE,
 } from '../ActionTypes/resend';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
-import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
+import cognitoErrorParser from '../../../../Util/Cognito/resendErrors';
 
 export const setUsername = text => ({
   type: SET_RESEND_USERNAME,
