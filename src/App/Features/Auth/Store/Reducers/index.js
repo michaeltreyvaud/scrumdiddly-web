@@ -1,33 +1,12 @@
 import {
-  SET_LOGIN_USERNAME,
-  ATTEMPT_LOGIN,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  SET_LOGIN_PASSWORD,
-  LOGIN_RESET_STATE,
-  SET_SIGNUP_EMAIL,
-  SET_SIGNUP_PASSWORD,
-  ATTEMPT_SIGNUP,
-  SIGNUP_SUCCESS,
-  SIGNUP_FAIL,
-  SET_SIGNUP_USERNAME,
-  SIGNUP_RESET_STATE,
   SET_CONFIRM_USERNAME,
   SET_CONFIRM_CODE,
   ATTEMPT_CONFIRM,
   CONFIRM_SUCCESS,
   CONFIRM_FAIL,
   CONFIRM_RESET_STATE,
-  SET_RESEND_USERNAME,
-  ATTEMPT_RESEND,
-  RESEND_SUCCESS,
-  RESEND_FAIL,
-  RESEND_RESET_STATE,
-  SET_FORGOT_USERNAME,
-  ATTEMPT_FORGOT,
-  FORGOT_SUCCESS,
-  FORGOT_FAIL,
-  FORGOT_RESET_STATE,
+} from '../ActionTypes/confirm';
+import {
   SET_CONFIRM_FORGOT_PASSWORD_USERNAME,
   SET_CONFIRM_FORGOT_PASSWORD_CODE,
   SET_CONFIRM_FORGOT_PASSWORD_PASSWORD,
@@ -35,33 +14,52 @@ import {
   CONFIRM_FORGOT_PASSWORD_SUCCESS,
   CONFIRM_FORGOT_PASSWORD_FAIL,
   CONFIRM_FORGOT_PASSWORD_RESET_STATE,
-} from '../constants';
-import loginReducer, { loginInitialState } from './login';
-import signupReducer, { signupInitialState } from './signup';
+} from '../ActionTypes/confirmForgotPassword';
+import {
+  SET_FORGOT_USERNAME,
+  ATTEMPT_FORGOT,
+  FORGOT_SUCCESS,
+  FORGOT_FAIL,
+  FORGOT_RESET_STATE,
+} from '../ActionTypes/forgot';
+import {
+  SET_LOGIN_USERNAME,
+  ATTEMPT_LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGIN_RESET_STATE,
+  SET_LOGIN_PASSWORD,
+} from '../ActionTypes/login';
+import {
+  SET_RESEND_USERNAME,
+  ATTEMPT_RESEND,
+  RESEND_SUCCESS,
+  RESEND_FAIL,
+  RESEND_RESET_STATE,
+} from '../ActionTypes/resend';
+import {
+  SET_SIGNUP_EMAIL,
+  SET_SIGNUP_PASSWORD,
+  ATTEMPT_SIGNUP,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL,
+  SET_SIGNUP_USERNAME,
+  SIGNUP_RESET_STATE,
+} from '../ActionTypes/signup';
 import confirmReducer, { confirmInitialState } from './confirm';
-import resendReducer, { resendInitialState } from './resend';
-import forgotReducer, { forgotInitialState } from './forgot';
 import confirmForgotPasswordReducer, { confirmForgotPasswordInitialState } from './confirmForgotPassword';
+import forgotReducer, { forgotInitialState } from './forgot';
+import loginReducer, { loginInitialState } from './login';
+import resendReducer, { resendInitialState } from './resend';
+import signupReducer, { signupInitialState } from './signup';
 
 const initialState = {
-  login: {
-    ...loginInitialState,
-  },
-  signup: {
-    ...signupInitialState,
-  },
-  confirm: {
-    ...confirmInitialState,
-  },
-  resend: {
-    ...resendInitialState,
-  },
-  forgot: {
-    ...forgotInitialState,
-  },
-  confirmForgotPassword: {
-    ...confirmForgotPasswordInitialState,
-  },
+  confirm: { ...confirmInitialState },
+  confirmForgotPassword: { ...confirmForgotPasswordInitialState },
+  forgot: { ...forgotInitialState },
+  login: { ...loginInitialState },
+  resend: { ...resendInitialState },
+  signup: { ...signupInitialState },
 };
 
 const authReducer = (state = initialState, action) => {
