@@ -66,10 +66,11 @@ const confirmForgotPasswordReducer = (state = confirmForgotPasswordInitialState,
       };
     }
     case CONFIRM_FORGOT_PASSWORD_FAIL: {
+      const errorMessage = action.payload.message;
       return {
         ...confirmForgotPasswordInitialState,
         hasErrors: true,
-        errorMessage: action.payload.message,
+        errorMessage,
       };
     }
     case CONFIRM_FORGOT_PASSWORD_RESET_STATE: {

@@ -40,10 +40,11 @@ const forgotReducer = (state = forgotInitialState, action) => {
       };
     }
     case FORGOT_FAIL: {
+      const errorMessage = action.payload.message;
       return {
         ...forgotInitialState,
         hasErrors: true,
-        errorMessage: action.payload.message,
+        errorMessage,
       };
     }
     case FORGOT_RESET_STATE: {

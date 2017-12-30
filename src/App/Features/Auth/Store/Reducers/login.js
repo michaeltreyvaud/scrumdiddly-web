@@ -49,10 +49,11 @@ const loginReducer = (state = loginInitialState, action) => {
       return loginInitialState;
     }
     case LOGIN_FAIL: {
+      const errorMessage = action.payload.message;
       return {
         ...loginInitialState,
         hasErrors: true,
-        errorMessage: action.payload.message,
+        errorMessage,
       };
     }
     case LOGIN_RESET_STATE: {

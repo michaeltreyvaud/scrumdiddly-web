@@ -40,10 +40,11 @@ const resendReducer = (state = resendInitialState, action) => {
       };
     }
     case RESEND_FAIL: {
+      const errorMessage = action.payload.message;
       return {
         ...resendInitialState,
         hasErrors: true,
-        errorMessage: action.payload.message,
+        errorMessage,
       };
     }
     case RESEND_RESET_STATE: {
