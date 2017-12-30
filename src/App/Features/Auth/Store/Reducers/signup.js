@@ -10,16 +10,16 @@ import {
 import validateEmail from '../../../../Util/emailCheck';
 
 export const signupInitialState = {
-  signupUsername: '',
-  signupUsernameValid: false,
-  signupEmailAddress: '',
-  signupEmailAddressValid: false,
-  signupPassword: '',
-  signupPasswordValid: false,
-  signupAttempt: false,
-  signupHasErrors: false,
-  signupErrorMessage: '',
-  signupSuccess: false,
+  userName: '',
+  userNameValid: false,
+  email: '',
+  emailValid: false,
+  password: '',
+  passwordValid: false,
+  attempt: false,
+  hasErrors: false,
+  errorMessage: '',
+  success: false,
 };
 
 const signupReducer = (state = signupInitialState, action) => {
@@ -28,49 +28,49 @@ const signupReducer = (state = signupInitialState, action) => {
       const userName = action.payload.text;
       return {
         ...state,
-        signupHasErrors: false,
-        signupErrorMessage: '',
-        signupUsername: userName,
-        signupUsernameValid: (userName && userName.length > 0) || false,
+        hasErrors: false,
+        errorMessage: '',
+        userName,
+        userNameValid: (userName && userName.length > 0) || false,
       };
     }
     case SET_SIGNUP_EMAIL: {
       const email = action.payload.text;
       return {
         ...state,
-        signupHasErrors: false,
-        signupErrorMessage: '',
-        signupEmailAddress: email,
-        signupEmailAddressValid: validateEmail(email),
+        hasErrors: false,
+        errorMessage: '',
+        email,
+        emailValid: validateEmail(email),
       };
     }
     case SET_SIGNUP_PASSWORD: {
       const password = action.payload.text;
       return {
         ...state,
-        signupHasErrors: false,
-        signupErrorMessage: '',
-        signupPassword: password,
-        signupPasswordValid: (password && password.length > 0) || false,
+        hasErrors: false,
+        errorMessage: '',
+        password,
+        passwordValid: (password && password.length > 0) || false,
       };
     }
     case ATTEMPT_SIGNUP: {
       return {
         ...state,
-        signupAttempt: true,
+        attempt: true,
       };
     }
     case SIGNUP_SUCCESS: {
       return {
         ...signupInitialState,
-        signupSuccess: true,
+        success: true,
       };
     }
     case SIGNUP_FAIL: {
       return {
         ...signupInitialState,
-        signupHasErrors: true,
-        signupErrorMessage: action.payload.message,
+        hasErrors: true,
+        errorMessage: action.payload.message,
       };
     }
     case SIGNUP_RESET_STATE: {

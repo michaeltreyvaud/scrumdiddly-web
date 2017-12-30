@@ -11,8 +11,8 @@ class SignupForm extends Component {
   }
   componentWillReceiveProps(nextProps) {
     //  Navigate to confirm route on signup success
-    if ((nextProps.signupSuccess !== this.props.signupSuccess) &&
-      (nextProps.signupSuccess === true && this.props.signupSuccess === false)) {
+    if ((nextProps.success !== this.props.success) &&
+      (nextProps.success === true && this.props.success === false)) {
       this.props.history.push('/auth/confirm');
     }
   }
@@ -20,20 +20,20 @@ class SignupForm extends Component {
     this.props.resetState();
   }
   userNameOnChange(text) {
-    this.props.setSignupUsername(text);
+    this.props.setUsername(text);
   }
   emailOnChange(text) {
-    this.props.setSignupEmailAddress(text);
+    this.props.setEmail(text);
   }
   passwordOnChange(text) {
-    this.props.setSignupPassword(text);
+    this.props.setPassword(text);
   }
   submitSignupForm(event) {
     event.preventDefault();
-    if (this.props.validEmailAddress &&
-      this.props.validPassword &&
-      this.props.signupUsernameValid) {
-      this.props.signup(this.props.signupUsername, this.props.emailAddress, this.props.password);
+    if (this.props.userNameValid &&
+      this.props.emailValid &&
+      this.props.passwordValid) {
+      this.props.signup(this.props.userName, this.props.email, this.props.password);
     }
   }
   render() {
@@ -46,14 +46,14 @@ class SignupForm extends Component {
           placeholder="Username"
           type="text"
           style={Styles.passwordInput}
-          value={this.props.signupUsername}
+          value={this.props.userName}
           onChange={event => this.userNameOnChange(event.target.value)}
         />
         <input
           placeholder="Email"
           type="text"
           style={Styles.emailInput}
-          value={this.props.emailAddress}
+          value={this.props.email}
           onChange={event => this.emailOnChange(event.target.value)}
         />
         <input
@@ -63,7 +63,7 @@ class SignupForm extends Component {
           value={this.props.password}
           onChange={event => this.passwordOnChange(event.target.value)}
         />
-        {this.props.signupAttempt ?
+        {this.props.attempt ?
           <div style={Styles.loadingContainer}>
             <ReactLoading
               type="spin"
@@ -76,9 +76,9 @@ class SignupForm extends Component {
         : <input
           type="submit"
           value="Signup"
-          style={this.props.validEmailAddress &&
-            this.props.validPassword &&
-            this.props.signupUsernameValid
+          style={this.props.userNameValid &&
+            this.props.emailValid &&
+            this.props.passwordValid
             ? Styles.submitButtonValid
             : Styles.submitButtonInValid}
         />}
@@ -99,8 +99,8 @@ class SignupForm extends Component {
           </button>
         </div>
         <div style={Styles.errorContainer}>
-          {this.props.signupHasErrors && this.props.signupErrorMessage &&
-            this.props.signupErrorMessage !== '' && this.props.signupErrorMessage}
+          {this.props.hasErrors && this.props.errorMessage &&
+            this.props.errorMessage !== '' && this.props.errorMessage}
         </div>
       </form>
     );
@@ -108,21 +108,21 @@ class SignupForm extends Component {
 }
 
 SignupForm.propTypes = {
-  signupUsername: PropTypes.string.isRequired,
-  signupUsernameValid: PropTypes.bool.isRequired,
-  emailAddress: PropTypes.string.isRequired,
-  validEmailAddress: PropTypes.bool.isRequired,
+  userName: PropTypes.string.isRequired,
+  userNameValid: PropTypes.bool.isRequired,
+  email: PropTypes.string.isRequired,
+  emailValid: PropTypes.bool.isRequired,
   password: PropTypes.string.isRequired,
-  validPassword: PropTypes.bool.isRequired,
-  setSignupUsername: PropTypes.func.isRequired,
-  setSignupEmailAddress: PropTypes.func.isRequired,
-  setSignupPassword: PropTypes.func.isRequired,
+  passwordValid: PropTypes.bool.isRequired,
+  attempt: PropTypes.bool.isRequired,
+  hasErrors: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  success: PropTypes.bool.isRequired,
+  setUsername: PropTypes.func.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
   signup: PropTypes.func.isRequired,
-  signupAttempt: PropTypes.bool.isRequired,
-  signupHasErrors: PropTypes.bool.isRequired,
-  signupErrorMessage: PropTypes.string.isRequired,
   resetState: PropTypes.func.isRequired,
-  signupSuccess: PropTypes.bool.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

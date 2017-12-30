@@ -10,36 +10,36 @@ import {
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
 import cognitoErrorParser from '../../../../Util/cognitoErrorParser';
 
-export const setSignupUsername = text => ({
+export const setUsername = text => ({
   type: SET_SIGNUP_USERNAME,
   payload: {
     text,
   },
 });
 
-export const setSignupEmailAddress = text => ({
+export const setEmail = text => ({
   type: SET_SIGNUP_EMAIL,
   payload: {
     text,
   },
 });
 
-export const setSignupPassword = text => ({
+export const setPassword = text => ({
   type: SET_SIGNUP_PASSWORD,
   payload: {
     text,
   },
 });
 
-export const attemptSignup = () => ({
+export const attempt = () => ({
   type: ATTEMPT_SIGNUP,
 });
 
-export const signupSuccess = () => ({
+export const success = () => ({
   type: SIGNUP_SUCCESS,
 });
 
-export const signupFail = message => ({
+export const fail = message => ({
   type: SIGNUP_FAIL,
   payload: {
     message,
@@ -47,7 +47,7 @@ export const signupFail = message => ({
 });
 
 export const signup = (userName, email, password) => (dispatch) => {
-  dispatch(attemptSignup());
+  dispatch(attempt());
   const body = {
     userName,
     email,
@@ -63,14 +63,14 @@ export const signup = (userName, email, password) => (dispatch) => {
   }).then(cognitoErrorParser)
     .then(handleFetchErrors)
     .then(response => response.json())
-    .then(json => dispatch(signupSuccess(json)))
+    .then(json => dispatch(success(json)))
     .catch((err) => {
       let message = '';
       message = (!err.code) ? 'Unable to connect, please try again' : err.message;
-      return dispatch(signupFail(message));
+      return dispatch(fail(message));
     });
 };
 
-export const resetSignupState = () => ({
+export const resetState = () => ({
   type: SIGNUP_RESET_STATE,
 });

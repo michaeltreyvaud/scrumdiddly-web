@@ -1,32 +1,32 @@
 import { connect } from 'react-redux';
 import SignupForm from './signupForm';
 import {
-  setSignupEmailAddress,
-  setSignupPassword,
+  setUsername,
+  setEmail,
+  setPassword,
   signup,
-  setSignupUsername,
-  resetSignupState,
+  resetState,
 } from '../../Store/Actions/signup';
 
 const mapStateToProps = state => ({
-  emailAddress: state.auth.signup.signupEmailAddress,
-  validEmailAddress: state.auth.signup.signupEmailAddressValid,
-  password: state.auth.signup.signupPassword,
-  validPassword: state.auth.signup.signupPasswordValid,
-  signupAttempt: state.auth.signup.signupAttempt,
-  signupHasErrors: state.auth.signup.signupHasErrors,
-  signupErrorMessage: state.auth.signup.signupErrorMessage,
-  signupUsername: state.auth.signup.signupUsername,
-  signupUsernameValid: state.auth.signup.signupUsernameValid,
-  signupSuccess: state.auth.signup.signupSuccess,
+  userName: state.auth.signup.userName,
+  userNameValid: state.auth.signup.userNameValid,
+  email: state.auth.signup.email,
+  emailValid: state.auth.signup.emailValid,
+  password: state.auth.signup.password,
+  passwordValid: state.auth.signup.passwordValid,
+  attempt: state.auth.signup.attempt,
+  hasErrors: state.auth.signup.hasErrors,
+  errorMessage: state.auth.signup.errorMessage,
+  success: state.auth.signup.success,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setSignupUsername: text => dispatch(setSignupUsername(text)),
-  setSignupEmailAddress: text => dispatch(setSignupEmailAddress(text)),
-  setSignupPassword: text => dispatch(setSignupPassword(text)),
+  setUsername: text => dispatch(setUsername(text)),
+  setEmail: text => dispatch(setEmail(text)),
+  setPassword: text => dispatch(setPassword(text)),
   signup: (userName, emailAddress, password) => dispatch(signup(userName, emailAddress, password)),
-  resetState: () => dispatch(resetSignupState()),
+  resetState: () => dispatch(resetState()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);
