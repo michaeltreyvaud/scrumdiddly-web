@@ -8,6 +8,7 @@ import {
 } from '../ActionTypes/confirm';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
 import cognitoErrorParser from '../../../../Util/Cognito/confirmErrors';
+import * as LoginActions from './login';
 
 export const setUsername = text => ({
   type: SET_CONFIRM_USERNAME,
@@ -55,6 +56,7 @@ export const confirmAccount = (userName, confirmationCode) => (dispatch) => {
     .then(handleFetchErrors)
     .then(response => response.json())
     .then(json => dispatch(success(json)))
+    .then(dispatch(LoginActions.fail('Account has successfully been created, you can now login above')))
     .catch((err) => {
       let message = '';
       message = (!err.code) ? 'Unable to connect, please try again' : err.message;

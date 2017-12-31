@@ -9,6 +9,7 @@ import {
 } from '../ActionTypes/confirmForgotPassword';
 import handleFetchErrors from '../../../../Util/fetchErrorHandler';
 import cognitoErrorParser from '../../../../Util/Cognito/confirmForgotPasswordErrors';
+import * as LoginActions from './login';
 
 export const setUserName = text => ({
   type: SET_CONFIRM_FORGOT_PASSWORD_USERNAME,
@@ -64,6 +65,7 @@ export const confirmForgotPassword = (userName, confirmationCode, password) => (
     .then(handleFetchErrors)
     .then(response => response.json())
     .then(json => dispatch(success(json)))
+    .then(dispatch(LoginActions.fail('Password has been reset, you can now login above with your new details')))
     .catch((err) => {
       let message = '';
       message = (!err.code) ? 'Unable to connect, please try again' : err.message;

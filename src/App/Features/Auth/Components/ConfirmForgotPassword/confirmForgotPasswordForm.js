@@ -7,6 +7,7 @@ import Loading from '../../../../Common/Forms/loading';
 import Submit from '../../../../Common/Forms/submit';
 import ErrorContainer from '../../../../Common/Forms/errorContainer';
 import NavButton from '../../../../Common/Forms/navButton';
+import Description from '../../../../Common/Forms/description';
 
 class ConfirmForgotPasswordForm extends Component {
   componentWillMount() {
@@ -39,6 +40,7 @@ class ConfirmForgotPasswordForm extends Component {
     }
   }
   render() {
+    const description = 'Please enter the above details to create your new password';
     return (
       <form
         onSubmit={event => this.submitSignupForm(event)}
@@ -79,6 +81,9 @@ class ConfirmForgotPasswordForm extends Component {
             onClick={() => { this.props.history.push('/auth/signup'); }}
           />
         </div>
+        <Description
+          description={description}
+        />
         <ErrorContainer
           displayErrors={this.props.hasErrors}
           errorMessage={this.props.errorMessage}

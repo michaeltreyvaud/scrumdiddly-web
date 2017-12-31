@@ -9,5 +9,5 @@ TODO for finishing auth feature
 - [X] Get test coverage for actions/reducers
 - [X] Standardise form input/button components and styles
 - [ ] Add real front end validation on all inputs - ensure they align with what cognito expects
-- [ ] Add descriptions that make sense to each auth flow
+- [X] Add descriptions that make sense to each auth flow
 - [ ] Review this list when all items are complete

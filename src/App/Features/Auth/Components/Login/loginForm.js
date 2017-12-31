@@ -9,9 +9,6 @@ import ErrorContainer from '../../../../Common/Forms/errorContainer';
 import NavButton from '../../../../Common/Forms/navButton';
 
 class LoginForm extends Component {
-  componentWillMount() {
-    this.props.resetState();
-  }
   componentWillUnmount() {
     this.props.resetState();
   }
